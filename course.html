@@ -1,0 +1,1328 @@
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <!-- Fathom - beautiful, simple website analytics -->
+  <script src="https://cdn.usefathom.com/script.js" data-site="FGETGMOF" defer></script>
+  <!-- / Fathom -->
+  <title>Practical AI Application Development for Javascript Developers</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0c6aafb4-b5d7-498e-9e6d-1589994f3c9b" class="page sans">
+  <h1 class="page-title"><strong>Practical AI Application Development for Javascript Developers</strong></h1>
+  Thanks for visiting the HTML version of the course.
+  👉🏼 Use the download link if you're interested in the <a href="Practical AI Application Development for Javascript Developers.pdf" download="YourDownloadFileName.pdf">PDF version (63 Pages - 4.1MB)</a>.
+  👉🏼 Feel free to share with me your ideas on <a href="https://discord.gg/YSRuyrEuug">Discord</a>. Also available if you have any questions.
+  👉🏼 If you find this course useful, please leave a star ⭐ on the <a href="https://github.com/thestriver/ai-for-javascript-course">main repository.</a> Looking forward to your PR contribution.
+  <p class="page-description"></p></header><div class="page-body"><figure id="41c5b94d-bf92-48fb-aceb-df9b9b157483" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Practical_AI_Application_Development_for_Javascript_Developersb.png"><img style="width:1024px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Practical_AI_Application_Development_for_Javascript_Developersb.png"/></a></figure><nav id="9d7f96f2-7363-4e27-97af-e0b13971bfa7" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#82dd4547-f872-4ce5-b3d7-03ad38ce22fa">Title: </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#82290a00-227b-40a1-819b-bbc63db32219">Subtitle: </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#dd3757b2-4d66-4fad-938e-7dbf6cc80166">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f3e5dc53-678a-49da-a012-c328853fc0f2">Module 1: JavaScript for AI</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e3f63117-117d-44ba-b1a8-0fa56c1754cb">Advantages of Using JavaScript Frameworks in AI Application Development</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c0700795-4b0b-4652-a648-8b1ba516ce1a"><strong>Module</strong> <strong>Project:</strong> Setting up a development environment</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3d4fc7c7-bc2c-48a4-9428-c4ca19162281">1. Setting Up Node.js</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#0ef0c150-7fef-4d3f-bd1e-892e38e5d7f8">2. Setting Up Next.js</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#46901122-72c3-4de5-9c66-51673e3b4ec3">Conclusion</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7a03e210-3e70-453e-9f06-73c2c74549db">Module 2: Basics of AI Development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b783f80b-b7c5-4bef-a9b2-b255a44ed120">Introduction to LLMs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e9817549-52cd-48a8-9841-542a8f038cdc">Basics of Prompt Engineering and Model Selection</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#cdd92ed9-200e-4eee-8616-2aaa2faa02df"><strong>Strategies for Better Results</strong>:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#704b08fa-5d2b-4aef-826d-67711d7940fb">Integrating LLMs with JavaScript</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5ab842b0-5827-4b0a-8642-d39832120186">Module Project<strong>: Building an AI Content Generator with Node.js and OpenAI GPT 3.5 /Mistral 7B Instruct v0.2 </strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#4a37e3be-dbd0-4dd6-92fb-15e70b6b4649"><strong>Prompts for Your AI Content Generator</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#387a230e-d3ff-4e0c-ae74-e27f4821fe11">Getting Started with OpenAI and Node.js</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#76b7f779-4e71-4fb6-8eb8-790184ab51aa">Writing the AI Content Generator</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#daa01d5b-06dc-406e-b268-480e1f53b625">Getting Started with Mistral AI and Node.js</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#987d4389-e4fd-46d9-a1d2-1a25df1f1d08">Conclusion</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9a8d49bb-907f-4a40-b840-70fe6f76b5cc"><strong>Additional Resources</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c715ff4b-95b9-499a-b19e-b80a0810c9ac"><strong><strong>Module 3: Integrating AI Models to JS Apps</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f6126ec2-0b71-4e45-ad08-19e46d5e4119"><strong>Exploring Open-Source AI Models like Stable-Diffusion and Gemini</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7b4e9bf7-50d2-43c5-ac85-2dc01be69d91">Exploring Closed-Source (Commercial) AI Models like Whisper and Dall-E</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#588644d6-0ca9-4bba-a6a2-7f950628de77">Working with APIs and External Libraries</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#d0070604-3f16-4f79-aed2-155bc974d436"><strong>Advantages of API Endpoints vs SDKs</strong>:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#534d4362-b408-4012-9a60-65570a43331e">Handling AI Model Responses and Interactivity</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c5de0865-32ec-4868-a9b1-8de5cfa2b9d2">Project: Build an Image Generation App Using Dall-E Integration</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#31470155-41f6-4aa1-8ab1-bb83dcb6df23">Setting Up the Project</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#aa0064a6-c792-4fae-a5b1-6a2840e989b2">Building the React Frontend</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bcfa1c32-4758-4e33-ae4f-e548a099bcc7"><strong>Conclusion</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#046d09d4-3618-4c38-99da-cd294193e625"><strong>Additional Resources</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#71b74cb0-56ac-406f-8b86-abec8e3f9112">Module 4: Introduction to Retrieval Augmented Generation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3685bb62-eefc-4541-a72c-f9fa786feeca">Basics of Retrieval Augmented Generation (RAG)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#aa1faac9-11e7-44f9-a768-5851d1b65e0e"><strong>How RAG Works</strong> </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e0560f67-1c5f-4caf-9c20-92729a35951e">Understanding Embeddings and Vector Databases</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#393a2e80-b523-4129-acf8-458a3139d4a3">Overview of Open-Source RAG Tools of the Trade</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c94f111b-dec7-49c6-bebf-df8cdc0d3df2">Integrating Vercel AI SDK</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2361a8cc-b9c8-4716-b359-7d76c60964de">Implementing RAG in Next.js</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1d972dbe-5c40-4447-952b-cdbba4aa8d45">Module Project<strong>: Building a Research Assistant Tool with Next.js and Langchain</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1be4b3a5-f49d-42dc-bb9d-90660754f813">Our Tech Stack</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#012ebdb6-b470-4a7c-a9c9-05a843bfc905">Prerequisites</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#b302bcaa-2d81-4add-a785-1b10c4ce6f3c">Setting Up Next.js</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#116b8df2-a82c-4a85-bc7e-4ffdb940a3a6">Creating the <code><strong>.env.local</strong></code> File</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7a7dd6b5-eba2-4e74-a09d-f0633bbc0c14">Installing Necessary Packages</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#322322af-6eaa-4c80-b428-6ad9a8a4d376">Step 1: One-Time Query Retrieval with MemoryVectorStore</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#eae851b7-13f0-42ca-b2e0-fb0d0fa660ac">Crafting the <code><strong>/ingest-research</strong></code> Route</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ca6e1dfc-7591-45e5-acf0-73304a7e983c">Step 2: Conversational Chat Retrieval with Pinecone</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#bdf63098-3ed8-4b4d-9ee5-1f162dfe4eb6"><strong>Advantages of Pinecone for Conversational Retrieval</strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#04651c23-333b-4d0e-b429-d6115f6512bd">Signup for Pinecone</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#988c2c91-7f4f-4eb0-bbe5-621033d196ee">Building the <code><strong>/chat-research</strong></code> Route</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#992ab9ac-d149-4023-b7ee-eebd0a550f46">Building the Frontend</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5b2b04aa-f574-4a91-bd68-eb2b4e7b6654">Running the Application</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#510d094e-e443-448c-ba70-4ed4807d9dac">Conclusion</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c83202d6-fc85-4ab4-a843-10779d816c23"><strong>Additional Resources</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1064931c-ed75-4fb5-b89f-40fc987bf934"><strong>Module 5: Building Complex AI Applications</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#216fbe95-90ea-4b1d-b384-9de3b07cd366">Advanced Prompt Engineering and Optimization</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f9398967-e78b-4419-a257-84bf558c0ff4">AI Function Calling</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9f8e7aae-8d1f-473b-bb4b-ade8be086ec0"><strong>Crafting AI Agents</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#555ea49c-76a0-49f8-a23e-b22c3347008f">Module Projects: </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ae96f712-b0ba-470e-b869-ea478059346b"><strong><strong>Project 1: Basic AI Agent with LangChain and BabyAGI</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#7b535420-c3df-46e6-915b-5ebc5667eb91"><strong><strong>Project 2: AI Agents with External Data Tools (LangChain and AutoGPT)</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ee380ccb-9f0b-4d6c-97c3-ccc6818f7f31">Project 3: <strong><strong>Building a Location-Based Suggestion Agent with OpenAI SDK and Node.js</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d23ef137-f2e1-4a65-b873-9a2341cdded6">Conclusion</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4e0ae116-ea53-4d26-a5ae-18d8ff667f53">Resources</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5e8bceef-2323-4f53-8209-1490ce92dbb4">Module 6: Security, Ethics, and Performance in AI Development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0ef76ce7-6043-4077-a34e-6d54710dcc63">1. Security Practices in AI Applications</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#37692e84-015f-4c15-bb88-534cfd18e3f6"><strong>Understanding AI-specific Security Risks</strong>: </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#649d50d5-5a1c-4f17-b66f-767a6ad646cc"><strong>Implementing Robust Security Protocols</strong>: </a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#c7f7a95b-2d88-4a03-8805-4d6a773b09d5"><strong>Regular Audits and Compliance: </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a789b28c-dcb3-4679-ad6a-edf71b7e1d30"><strong><strong>2. Ethical Considerations and Best Practices In Building AI Apps</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6493bed2-cf57-4ac4-9ea6-05a66b612f00"><strong><strong>3. Privacy-focused Local LLMs</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#361f0167-8a10-4762-9f16-b0e3c84fdb0f">4. <strong><strong>Enhancing and Scaling AI Applications - Strategies for Optimal Performance and Deployment</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fb562124-828b-4ceb-b9a4-cab0463f84c1">Conclusion</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#41af79b9-fd6c-4a83-ad04-52d73f93bd50"><strong>Additional Resources</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#30dda34b-b56d-4dfa-8ad2-72f3d2b4e253">Additional Resources - Checklists, Roadmaps, Visual aids</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6b462a8f-54c7-4d00-a4fe-6766ba9adbe7"><strong><strong>Module Checklists</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#38d35a81-57e5-4884-bcfb-43e04ebedd18">Module 1: JavaScript for AI</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#8fc57df3-c7ed-4801-a83e-e91063c15d7a">Module 2: Basics of AI Development</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#df940b61-0f08-48da-8e7e-771d54e46af6">Module 3: Integrating AI Models to JS Apps</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#97a45c02-d223-4fd7-af59-aeffe7242f2f">Module 4: Introduction to Retrieval Augmented Generation</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#af745850-ad0c-4257-b955-6bb400d2d44b">Module 5: Building Complex AI Applications</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#87337d34-7ff4-4520-bd71-312bf826958e">Module 6: Security, Ethics, and Performance in AI Development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f0f8f940-1e39-412f-ae76-670e6a4d5917">List of more projects you can build</a></div></nav><h1 id="82dd4547-f872-4ce5-b3d7-03ad38ce22fa" class="">Title: </h1><p id="06944b5e-d27d-466e-bf32-7d880effb079" class=""><strong>Practical AI Application Development for Javascript Developers</strong></p><h2 id="82290a00-227b-40a1-819b-bbc63db32219" class="">Subtitle: </h2><p id="6ce0550b-04c9-4ece-a8a7-38240f0d7f7d" class="">An open-source course for Javascript developers to get into AI Application development with checklists, projects and demos.</p><hr id="5c19040a-b352-4f4c-84ed-e828266d6c56"/><h1 id="dd3757b2-4d66-4fad-938e-7dbf6cc80166" class="">Introduction</h1><p id="2fb3a3b8-4c40-4dde-9067-0f3547376bf9" class="">I built this course hoping it would be an excellent guide for aspiring AI developers and a valuable resource for the wider JavaScript developer community.</p><p id="de312b8b-f005-49c0-9ae5-99c06e1ef903" class="">Over the past year, the artificial intelligence industry has been at the forefront of technological advancement worldwide, with so many mind-blowing products and experiments released to the world. For example, OpenAI’s ChatGPT was released in late 2022, instantly breaking all consumer records as the fastest-growing consumer product ever. </p><figure id="ed05dadd-bc92-4776-83d9-a20e110b425c" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Untitled.png"><img style="width:720px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Untitled.png"/></a></figure><p id="22407694-931d-4f25-beaf-ffc46c92fea8" class=""><br/><br/>The possibilities are endless, and if you’re a curious javascript developer like me, your idea notebook is brimming full of ideas you can develop. Now you can imagine how shocked I was when the majority of early AI experiments and tutorials were released in Python. Now, don’t get me wrong, I’m a huge fan of Python, and I’ve used Python to build many AI apps. Plus, Python has been helpful to many data science and machine learning communities in the past. But there has to be something for Javascript too. The stats support this too.<br/></p><p id="4d15277b-7143-4dce-b8b7-f62fd9a92c7f" class="">According to the <a href="https://survey.stackoverflow.co/2023/">Stack Overflow Developer Survey 2023</a>, JavaScript remains the most commonly used programming language for the tenth year running, a testament to its enduring popularity and versatility. Lately, there has been an increase in published JS libraries and resource materials, and this course is a contribution to that effort. </p><p id="d675a3d5-d220-402d-902b-2d288d8d5401" class="">
+</p><p id="cc9d9ba1-e1d3-4f2a-b19e-471956daf264" class=""><strong><strong>Course Structure, Objectives, and Expected Outcomes</strong></strong></p><p id="c4c4bc48-0d49-4631-b226-07915dae3137" class="">Structured to ensure a smooth transition from basic concepts to advanced applications, this course takes a step-by-step approach. It begins with an overview of AI fundamentals, gradually moving towards more complex topics like Retrieval Augmented Generation and ethical AI.</p><p id="a07a8c89-b21d-46fd-a52e-2bedab14ebc9" class="">Each course module is designed to build upon the previous one, ensuring a gradual and comprehensive understanding of AI application development using JavaScript. The course balances theoretical knowledge with practical projects, providing a well-rounded learning experience.</p><p id="77b8d189-122a-4da3-b19c-f41f22b34b82" class="">As you embark on this journey, how do you envision applying AI in your JavaScript projects? Feel free to share with me your ideas on <a href="https://discord.gg/YSRuyrEuug">Discord</a>.</p><p id="5a5add6a-d4e3-449f-b5af-9ec154dc32ed" class="">
+</p><hr id="5df4c729-56a0-47fc-ae8e-9c5de63b6562"/><h1 id="f3e5dc53-678a-49da-a012-c328853fc0f2" class="">Module 1: JavaScript for AI</h1><p id="4ede2c17-fad9-4aff-8a82-94328aa9cdde" class=""><strong>Summary:</strong> Exploration of the JavaScript ecosystem for AI, focusing on the relevance and benefits of using Javascript frameworks like Node.js and Next.js for AI applications.</p><p id="8df4d5eb-b0e8-4772-9e8d-e15f9a0b1078" class="">JavaScript is an excellent tool for creating interactive web pages and apps. As more heavily funded AI startup experiments become ready for the end consumer user, Javascript developers who are able to integrate these experiments into production-ready web and mobile apps stand to gain a lot of career advancements.</p><h2 id="e3f63117-117d-44ba-b1a8-0fa56c1754cb" class=""><strong>Advantages of Using JavaScript Frameworks in AI Application Development</strong></h2><ul id="04430341-27ad-4542-bda6-1f994105452e" class="bulleted-list"><li style="list-style-type:disc"><strong>Ubiquity and Community Support</strong>: JavaScript&#x27;s dominance in web development means a vast community of developers and an abundance of community resources and support. </li></ul><ul id="e92c9f9a-8784-4712-b738-36e29ca24d9e" class="bulleted-list"><li style="list-style-type:disc"><strong>Versatility and Flexibility</strong>: JavaScript, coupled with frameworks like Node.js and Next.js, offers unparalleled flexibility. Node.js, for instance, extends JavaScript&#x27;s reach to server-side programming, enabling developers to build scalable and efficient AI-backed applications. Its non-blocking, event-driven architecture is particularly suited for handling AI&#x27;s data-intensive tasks.</li></ul><ul id="69678b29-7b49-4c13-88aa-172275b3037a" class="bulleted-list"><li style="list-style-type:disc"><strong>Seamless Integration with AI Tools</strong>: Many AI tools and libraries are increasingly becoming JavaScript-friendly. AI startups like OpenAI now provide Javascript libraries that allow developers to harness the latest AI advancements in building amazing apps directly within a JavaScript environment.</li></ul><ul id="d5d74fc5-f333-4bf2-9fb2-84e6c00301dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Robust Ecosystem for Frontend and Backend Development</strong>: <br/>Although I’m familiar with a lot of Javascript frameworks and encourage others to choose anyone that makes them comfortable. This course will heavily use Node.js and Next.js because they make it easier to build a fullstack AI application.<br/>With Next.js, developers can enjoy a streamlined development process, making it simpler to build AI-powered applications with universal rendering capabilities - critical for AI applications that require heavy data processing both on the client and server side.<br/></li></ul><p id="679c7434-6185-4f1b-8eb7-6597ab75f900" class="">
+</p><h3 id="c0700795-4b0b-4652-a648-8b1ba516ce1a" class=""><strong>Module</strong> <strong>Project:</strong> Setting up a development environment</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="957e9da8-9b2e-482a-8f53-15b8f7f4fb72"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Note:</strong> Feel free to skip this if you already know how to do this.<br/>Note that this setup might not always be current, for the latest setup instructions please visit <br/><a href="https://nodejs.org/en">https://nodejs.org/en</a> and <a href="https://nextjs.org/docs/getting-started/installation">https://nextjs.org/docs/getting-started/installation</a></div></figure><p id="0cbf10a5-3b62-4f23-b003-eaeebad0e911" class="">Let&#x27;s roll up our sleeves and get our hands dirty. </p><h3 id="3d4fc7c7-bc2c-48a4-9428-c4ca19162281" class="">1. Setting Up Node.js</h3><p id="590a8548-2012-4955-a0ed-c5038af4bcfe" class="">Node.js is a runtime environment that lets you run JavaScript on the server side. It&#x27;s essential for building scalable and efficient AI applications.</p><p id="fb42f1c5-59da-4764-96d4-fb799ccf82b5" class=""><strong>Steps to Set Up Node.js:</strong></p><ol type="1" id="c7cc51c9-fdf8-4a06-ba83-4a44fd6cd1c0" class="numbered-list" start="1"><li><strong>Download Node.js</strong>:<ul id="a9fb54f7-c163-44de-819e-87b26a82b957" class="bulleted-list"><li style="list-style-type:disc">Visit the <a href="https://nodejs.org/">Node.js official website</a>.</li></ul><ul id="223984e5-82b8-45bd-9148-608c17a17bb3" class="bulleted-list"><li style="list-style-type:disc">Choose the latest version appropriate for your operating system.</li></ul></li></ol><ol type="1" id="4988ba97-1cf0-4dc4-b0ac-6588716debb8" class="numbered-list" start="2"><li><strong>Install Node.js</strong>:<ul id="d7440820-63a7-4b2b-9c65-92541b6c7eda" class="bulleted-list"><li style="list-style-type:disc">Run the downloaded installer and follow the installation prompts.</li></ul><ul id="2f6c5a04-5d2c-418d-af95-cdf0e187f97d" class="bulleted-list"><li style="list-style-type:disc">Ensure you select the option to install <code><strong>npm</strong></code> (Node Package Manager) as well, as it&#x27;s crucial for managing your JavaScript dependencies.</li></ul></li></ol><ol type="1" id="781ee359-63d7-4ab0-9517-3c0596d4ae6b" class="numbered-list" start="3"><li><strong>Verify Installation</strong>:<ul id="7746ec42-60a5-48b5-b546-e983a2cd0c2f" class="bulleted-list"><li style="list-style-type:disc">Open your terminal or command prompt.</li></ul><ul id="8d15558f-1f8b-46b4-9f50-74818fa0923c" class="bulleted-list"><li style="list-style-type:disc">Run <code><strong>node -v</strong></code> and <code><strong>npm -v</strong></code> to check the installed versions of Node.js and npm, respectively.</li></ul><ul id="90b4302e-4b73-47fe-a65a-bf4a9177ac08" class="bulleted-list"><li style="list-style-type:disc">You should see the version numbers displayed, confirming a successful installation.</li></ul></li></ol><p id="72cc4407-f280-4751-9a39-8f693cda2f9b" class=""><strong>Example Code to Test Node.js Installation:</strong><br/>Create a simple JavaScript file to test your Node.js setup.<br/></p><ul id="e23b1ad7-4281-4f1a-aa54-11cde8c4dd4f" class="bulleted-list"><li style="list-style-type:disc">Create a file named <code><strong>test.js</strong></code> and add the following code:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dc7d0ed-a53a-4acc-ae24-3a4fab6538f1" class="code code-wrap"><code class="language-JavaScript">console.log(&quot;Hello, Node.js!&quot;);</code></pre></li></ul><ul id="5a1ef2fe-4a54-4101-a6ed-0cfdd84464fa" class="bulleted-list"><li style="list-style-type:disc">Run this script in your terminal with:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a315aa72-7494-4732-bcfe-f4e77edb8aca" class="code code-wrap"><code class="language-Shell">node test.js</code></pre></li></ul><ul id="9d4b1e34-6a6e-49d5-a9c4-41d585666e61" class="bulleted-list"><li style="list-style-type:disc">If everything is set up correctly, you&#x27;ll see <code><strong>Hello, Node.js!</strong></code> printed in your terminal.</li></ul><p id="dff75cec-10a2-4b88-8328-774d1aa65a81" class="">
+</p><h3 id="0ef0c150-7fef-4d3f-bd1e-892e38e5d7f8" class="">2. Setting Up Next.js</h3><p id="70116ce1-9e46-4f97-abb7-93d98623e94e" class="">Next.js is a React framework that enables server-side rendering and generating static websites for React-based web applications.</p><p id="fb764234-8028-4093-9fdc-f156286c1a05" class="">There are currently two Nextjs setups. The old Pages Router and the new App router setups. I won’t be making a recommendation and encourage you to try both options.</p><p id="956c2127-39e3-4400-991b-ec9f62953d48" class="">Instead of sharing the setup, I would recommend you visit <a href="https://nextjs.org/docs/getting-started/installation">https://nextjs.org/docs/getting-started/installation</a> and follow the latest instructions. <br/><br/></p><h3 id="46901122-72c3-4de5-9c66-51673e3b4ec3" class="">Conclusion</h3><p id="9ed1a281-7816-4db4-ba74-e4cc4441da72" class="">Congratulations! You&#x27;ve successfully set up your development environment with Node.js and Next.js. You&#x27;re now ready to begin building AI-powered applications.</p><p id="2664cb39-52db-45ef-b410-79c1fe54ab57" class="">As you explore the capabilities of Node.js and Next.js, consider how you might leverage these tools in your upcoming AI projects. What innovative features can you envision bringing to life in your web applications?</p><p id="df266ac4-bab9-42f4-a38f-dc581267c78b" class="">
+</p><hr id="2ac5a8c4-3bbf-4fae-a54a-8a9289889f4b"/><h1 id="7a03e210-3e70-453e-9f06-73c2c74549db" class="">Module 2: Basics of AI Development</h1><p id="acf9bbac-1747-46ea-9af7-d587b1a31e1a" class=""><strong>Summary:</strong></p><p id="6dd2754c-dfde-44b0-9915-2bf665718355" class="">This module delves into LLMs and prompt engineering, providing foundational knowledge essential for AI development with JavaScript.</p><p id="048f1721-0e7a-44f7-8d98-e5631b5c6366" class="">
+</p><p id="7b41ac6f-ab50-4413-9e8f-8c91d11a2967" class="">Imagine a world where your web applications not only respond to user inputs but also understand and interact in a way that feels almost human. This is the world of AI, where Large Language Models (LLMs) like GPT, Mixtral, and Claude have started a revolution. In this module, we&#x27;re going to dive into the basics of AI development, focusing on how these powerful models can be integrated with JavaScript to create dynamic and intelligent web applications.</p><h2 id="b783f80b-b7c5-4bef-a9b2-b255a44ed120" class="">Introduction to LLMs</h2><p id="69d56416-04d3-4763-ac5d-fb833964812f" class="">Large Language Models represent a remarkable leap in the field of AI, offering capabilities that span various modalities, including text, vision, audio, and multimodal (a combination of different types). These models, such as OpenAI&#x27;s GPT series, Google&#x27;s BERT, and newer models like Mixtral and Claude, learn to understand context, generate human-like text, and even answer complex questions by being trained on vast datasets, enabling them to perform a wide array of language-related tasks. </p><ol type="1" id="d58570b2-8bf8-47b5-834d-d055859de06a" class="numbered-list" start="1"><li><strong>Text-Based Models</strong>: Models like OpenAI&#x27;s GPT (Generative Pre-trained Transformer) series, including the latest iteration, GPT-3, specialize in understanding and generating human-like text. They are trained on vast datasets of text and can perform tasks like translation, summarization, and content generation.</li></ol><ol type="1" id="dc24623f-b017-4a65-af30-4575be2b29c4" class="numbered-list" start="2"><li><strong>Vision-Based Models</strong>: These models are designed to understand and interpret visual data. For instance, Google&#x27;s Vision AI uses machine learning to recognize thousands of objects, such as animals, landmarks, and products, in images.</li></ol><ol type="1" id="da6706df-9ed4-4b56-800b-932b97d09e18" class="numbered-list" start="3"><li><strong>Audio Models</strong>: Audio models are adept at processing and understanding sound data. Whisper, for example, is an automatic speech recognition system that can transcribe and translate speech across multiple languages.</li></ol><ol type="1" id="fbde6115-1e17-4c06-82a3-3a4b8a188ae4" class="numbered-list" start="4"><li><strong>Multimodal Models</strong>: A multimodal LLM is <strong>a type of AI that&#x27;s trained with multiple types of data</strong>. It&#x27;s a subset of AI and is similar to Generative AI (GenAI). Multimodal LLM, like Apple’s Ferret, combines various types of data, such as image, text, speech, and numerical data, with multiple intelligence processing algorithms. This can help multimodal AI perform better than single-modal AI in many real-world problems.</li></ol><p id="e22ad460-d2f9-49f4-8e3e-e09f7f21ca00" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8be09693-2902-42ad-ad58-68de711071be"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Visit the HuggingFace dashboard for a comprehensive list of models<br/><br/><a href="https://huggingface.co/docs/transformers/model_doc/mixtral#:~:text=Image%20Processor-,MODELS,-INTERNAL%20HELPERS">https://huggingface.co/docs/transformers/model_doc/mixtral#:~:text=Image Processor-,MODELS,-INTERNAL HELPERS</a><figure id="6bfbd2c4-e4d4-4c9c-86b1-fd3435a88e68" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-02_at_2.37.31_PM.png"><img style="width:261px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-02_at_2.37.31_PM.png"/></a></figure></div></figure><h2 id="e9817549-52cd-48a8-9841-542a8f038cdc" class="">Basics of Prompt Engineering and Model Selection</h2><p id="f30c2ad2-afbf-4972-9397-7e798bfca271" class="">Prompt engineering is a vital skill in the field of AI, just as important as coding. It involves creating queries or inputs that direct language models to generate the desired output. The complexity lies in how the prompt is constructed; a well-structured prompt can utilize the model&#x27;s abilities to produce highly precise and relevant responses.</p><h3 id="cdd92ed9-200e-4eee-8616-2aaa2faa02df" class=""><strong>Strategies for Better Results</strong>:</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f032fa1f-982d-4007-a8a2-2020d4499fea"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">OpenAI’s Prompt Engineering Guide has a “<strong>Six strategies for getting better results”</strong> section. Check it out here<strong><strong>:</strong></strong> <a href="https://platform.openai.com/docs/guides/prompt-engineering/six-strategies-for-getting-better-results">https://platform.openai.com/docs/guides/prompt-engineering/six-strategies-for-getting-better-results</a></div></figure><p id="d0e6252b-2fbc-46a1-bfdc-cf6cc14995ae" class="">
+</p><p id="55f2e257-8ea6-40c6-9ac3-a5febd0693e2" class="">When selecting a model for your application, consider factors like the model&#x27;s complexity, response time, cost, and the nature of the tasks it needs to perform. Each model has its strengths and is suited to different types of applications.</p><figure id="7cf201b2-db06-461a-ae1c-3550f40029f2" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Untitled%201.png"><img style="width:676px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Untitled%201.png"/></a><figcaption>Source: <a href="https://medium.com/@aiwizard/llm-models-comparison-gpt-4-bard-llama-flan-ul2-bloom-9ad7c0c56ba5">https://medium.com/@aiwizard/llm-models-comparison-gpt-4-bard-llama-flan-ul2-bloom-9ad7c0c56ba5</a></figcaption></figure><h2 id="704b08fa-5d2b-4aef-826d-67711d7940fb" class="">Integrating LLMs with JavaScript</h2><p id="652bd1f3-9984-4e1d-89d5-46c41c0a096e" class="">Integrating LLMs into a JavaScript environment involves interacting with these models via APIs/SDKs. <br/><br/></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="dead3434-0177-47c6-90c9-80e7e73d449f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Note:<br/>In the next chapter, we will further explore popular open-source AI models and show how you can integrate them into your JS apps via APIs and external libraries.<br/></div></figure><h2 id="5ab842b0-5827-4b0a-8642-d39832120186" class="">Module Project<strong>: Building an AI Content Generator with Node.js and OpenAI GPT 3.5 /Mistral 7B Instruct v0.2 </strong></h2><p id="cb173646-ed61-481a-928f-0ea7c78127be" class="">In the landscape of modern web development, the integration of AI through Large Language Models (LLMs) like GPT-3.5 is not just a trend but an evolution. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a6f64ca0-3632-4e92-a24b-638cc1b93916"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">This blog post will guide you through creating a simple AI content generator using Node.js and two popular Models. <br/><br/><strong>OpenAI GPT3.5</strong> and <strong>Mistral 7B Instruct v0.2 (mistral-tiny)</strong>. </div></figure><p id="75207491-fe8b-4052-85a0-5136ada37112" class="">By the end, you&#x27;ll have a functional application that can generate blog posts, stories, or any text-based content.</p><h3 id="4a37e3be-dbd0-4dd6-92fb-15e70b6b4649" class=""><strong>Prompts for Your AI Content Generator</strong></h3><ul id="08885eb2-2d16-412a-af09-906be1a87bfd" class="toggle"><li><details open=""><summary>Examples</summary><p id="a841bac0-c3dc-487b-b39e-d3c5f45e1e8e" class="">To make the most of your AI content generator, it&#x27;s essential to understand how prompts can shape the content it produces. Different prompts can lead to various types of content, from creative stories to informational articles. Below is a list of prompt ideas, categorized by content type, to help you explore the versatility of your content generator.</p><p id="044bb24a-34f8-498d-8013-574399fe79b8" class="">1. Blog Posts</p><ul id="af397db0-d1f0-4e65-a402-fffdc26ab258" class="bulleted-list"><li style="list-style-type:disc">Technology Trends: &quot;Write a comprehensive blog post about the latest trends in blockchain technology for 2024.&quot;</li></ul><p id="738fb084-0e58-45fd-8b7e-8f093f500fd0" class="">2. Creative Writing</p><ul id="59623fad-fbbf-4de0-91c8-bbc9cbd375ec" class="bulleted-list"><li style="list-style-type:disc">Short Stories: &quot;Tell a short story about a time-traveling adventure in ancient Egypt.&quot;</li></ul><ul id="32a2624e-ac58-46b6-8683-756a1d358e93" class="bulleted-list"><li style="list-style-type:disc">Poetry: &quot;Compose a poem about the beauty of the ocean at sunset.&quot;</li></ul><p id="4d404a5b-64a5-461b-a48f-78729757240b" class="">3. Educational Content</p><ul id="48c40fee-8cb0-42a9-a109-e7c51e31837d" class="bulleted-list"><li style="list-style-type:disc">Science Explainers: &quot;Describe the process of photosynthesis in simple terms for high school students.&quot;</li></ul><ul id="2e56b54f-d8f7-49c1-8399-146e46b29904" class="bulleted-list"><li style="list-style-type:disc">Programming Tutorials: &quot;Write a beginner-friendly tutorial on building a basic website with HTML and CSS.&quot;</li></ul><p id="a45b57ca-3902-4aad-9909-65ac46bf8106" class="">4. Marketing and Sales Copy</p><ul id="80530b7a-8c5b-4500-8796-874f29c9467a" class="bulleted-list"><li style="list-style-type:disc">Product Descriptions: &quot;Generate an enticing description for a new eco-friendly yoga mat.&quot;</li></ul><p id="25a3eafe-aa16-447a-aa64-29d1ff022f88" class="">5. Personal Development</p><ul id="8d03460f-a57b-4e97-b376-a1f370e5927d" class="bulleted-list"><li style="list-style-type:disc">Career Advice: &quot;Provide insightful career advice for recent college graduates in the tech industry.&quot;</li></ul></details></li></ul><h3 id="387a230e-d3ff-4e0c-ae74-e27f4821fe11" class="">Getting Started with OpenAI and Node.js</h3><p id="5d4aa0ab-e905-46ea-8366-c6316b8cefc4" class="">Before diving into the code, make sure you have Node.js installed. If you don&#x27;t have it, please refer to the first module.</p><p id="2ed3dc86-f5eb-48a9-a7cb-656519089854" class=""><strong>Step 1: Initialize Your Node.js Project</strong></p><ol type="1" id="a0fb6c62-c2ef-42e2-951e-37a6b6fb4c41" class="numbered-list" start="1"><li>Create a new directory for your project.</li></ol><ol type="1" id="6bb2708a-4581-4d5c-b10e-4711dcbccc7f" class="numbered-list" start="2"><li>Navigate to this directory in your terminal and run <code><strong>npm init -y</strong></code> to initialize a new Node.js project.</li></ol><ol type="1" id="05b49929-31f4-44ad-bd89-67e09ce1d6c9" class="numbered-list" start="3"><li>Install the OpenAI npm package with <code><strong>npm install --save openai</strong></code>.</li></ol><p id="1e9ec7d9-6456-4885-a9f6-415fe4dff5ba" class=""><strong>Step 2: Setting Up OpenAI API</strong></p><ol type="1" id="4d32d2db-cf3e-47f6-9d98-e3079b3b6551" class="numbered-list" start="1"><li>Sign up for an API key from <a href="https://platform.openai.com/signup">OpenAI</a>. This key is essential to authenticate your requests.</li></ol><ol type="1" id="9979f8d8-f001-4d78-b9bf-07356026fbde" class="numbered-list" start="2"><li>Store your API key in a safe place. It’s recommended to use environment variables to keep your key secure.</li></ol><h3 id="76b7f779-4e71-4fb6-8eb8-790184ab51aa" class="">Writing the AI Content Generator</h3><p id="7384fd5d-508e-40fa-84aa-a4d1acbd7534" class="">Now, let&#x27;s get to the exciting part – coding our AI content generator.</p><p id="3803dd34-e759-4da8-a7cb-68dd469c562e" class=""><strong>Step 3: Configure OpenAI API in Your Application</strong></p><p id="f6b5cb5f-2078-422f-9d71-97e45e7e2539" class="">Create a new JavaScript file (e.g., <code><strong>app.js</strong></code>) in your project directory and start by importing the OpenAI library:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c9212ad6-a901-4a8d-80ea-a4c0be8150ab" class="code code-wrap"><code class="language-JavaScript">import OpenAI from &quot;openai&quot;;
+//const { OpenAI } = require(&#x27;openai&#x27;); (use this if you&#x27;re getting Warning: To load an ES module, set &quot;type&quot;: &quot;module&quot; in the package.json or use the .mjs extension.)
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+});</code></pre><p id="beccbfac-3f54-4461-aeb4-3f1312e3b345" class="">Make sure you have set your <code><strong>OPENAI_API_KEY</strong></code> in your environment variables.</p><p id="f1acdf5e-3d56-4030-b263-0b1b58966182" class="">
+</p><p id="602b3ab7-8df8-4594-9f4c-53e6ca553733" class=""><strong>Step 4: Writing the Function to Generate Content</strong></p><p id="012d3289-fbd5-4e74-b0de-ea56f28c839b" class="">Next, we&#x27;ll write a function that uses OpenAI&#x27;s SDK <code><strong>chat.completions.create</strong></code> method to generate content:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7c2ff15e-d244-4ef4-a83e-995eba3e91fc" class="code code-wrap"><code class="language-JavaScript">async function generateContent(prompt) {
+    try {
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [{ role: &quot;user&quot;, content: prompt }],
+            model: &quot;gpt-3.5-turbo&quot;,
+        });
+
+        return chatCompletion.choices[0].message.content;
+    } catch (error) {
+        console.error(&quot;Error generating content:&quot;, error);
+        return null;
+    }
+}</code></pre><p id="302ed903-ae89-4cec-9e22-9fef349f9063" class="">In this function, the <code><strong>prompt</strong></code> is the input from the user, which we send to the OpenAI generative AI model API. The API then returns the generated content based on this prompt.</p><p id="f3fdb5b8-2ce8-414e-a060-ceaebe093945" class="">
+</p><p id="3022fe8d-12ab-43ad-b901-df62714332ef" class=""><strong>Step 5: Testing Your Application</strong></p><p id="41766a13-d4f6-49d2-b2b4-3138a98ba08b" class="">Now it’s time to test your application. You can do this by adding a simple call to <code><strong>generateContent</strong></code> at the end of your <code><strong>app.js</strong></code>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d751fa5-d1fa-4ffd-8e8f-e29807e93fe0" class="code code-wrap"><code class="language-JavaScript">const blogPostPrompt = &quot;Write a comprehensive blog post about the latest trends in blockchain technology for 2024.&quot;;
+
+generateContent(blogPostPrompt)
+    .then(content =&gt; console.log(content))
+    .catch(error =&gt; console.error(error));</code></pre><p id="83cb4948-d631-4833-913d-d4552dbac47d" class="">Run your application using <code><strong>node app.js</strong></code> and see the AI-generated content in your console.<br/><br/></p><ul id="91375193-a112-49c6-83b6-cda05da24d42" class="toggle"><li><details open=""><summary><strong>Full Code</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d7ff9240-546f-424f-9ad9-b85f40fdaace" class="code"><code class="language-JavaScript">import OpenAI from &quot;openai&quot;;
+//const { OpenAI } = require(&#x27;openai&#x27;); (use this if you&#x27;re getting Warning: To load an ES module, set &quot;type&quot;: &quot;module&quot; in the package.json or use the .mjs extension.)
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+});
+async function generateContent(prompt) {
+    try {
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [{ role: &quot;user&quot;, content: prompt }],
+            model: &quot;gpt-3.5-turbo&quot;,
+        });
+
+        return chatCompletion.choices[0].message.content;
+    } catch (error) {
+        console.error(&quot;Error generating content:&quot;, error);
+        return null;
+    }
+}
+const blogPostPrompt = &quot;Write a comprehensive blog post about the latest trends in blockchain technology for 2024.&quot;;
+
+generateContent(blogPostPrompt)
+    .then(content =&gt; console.log(content))
+    .catch(error =&gt; console.error(error));</code></pre></details></li></ul><h3 id="daa01d5b-06dc-406e-b268-480e1f53b625" class="">Getting Started with Mistral AI and Node.js</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="20473276-0b8e-4d21-a491-8e5c077f9cef"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Running the example below requires a Mistral AI API key.<p id="a0a941b8-a5c3-4d90-bcca-7b04058b0bca" class="">Visit <a href="https://docs.mistral.ai/#api-access">https://docs.mistral.ai/#api-access</a> for instructions on how to get one.</p></div></figure><p id="db310820-6e28-4a92-92e8-0e14fdf4a091" class="">1. Create a New Node.js Project</p><ul id="40615fbd-c571-456c-a658-8ff33170ae87" class="bulleted-list"><li style="list-style-type:disc"><strong>Initialize your project</strong>: Create a new directory for your project and initialize it with <code><strong>npm init -y</strong></code>. This step creates a <code><strong>package.json</strong></code> file for managing your project dependencies.</li></ul><p id="20536b12-5580-466e-95ef-08cb7d8ac5c7" class="">2. Install Mistral AI Package</p><ul id="47e73699-4583-44b1-8aed-659f44a5ebf3" class="bulleted-list"><li style="list-style-type:disc"><strong>Install the package</strong>: Run <code><strong>npm install @mistralai/mistralai</strong></code> in your project directory. This command installs the Mistral AI package and adds it to your <code><strong>package.json</strong></code>.</li></ul><p id="4fe06790-cde1-4949-83d5-6e3db55695e8" class="">3. Set Up Your Mistral AI API Key</p><ul id="81748e05-40e0-4682-a54b-6bd08b45e3fc" class="bulleted-list"><li style="list-style-type:disc"><strong>Secure your API key</strong>: Store your Mistral AI API key in an environment variable. For local development, you can use a <code><strong>.env</strong></code> file and a package like <code><strong>dotenv</strong></code> to load environment variables. Remember, never hardcode your API keys directly into your source code, especially when pushing code to public repositories.</li></ul><p id="ce52f684-43e8-4234-ba54-6c74a357082d" class="">4. Write Your Node.js Application</p><p id="e8bb3a62-ac58-45ac-849e-9a510530cc56" class="">Create a new file, for example, <code><strong>app.js</strong></code>, and write your Node.js application code:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="acb54b5d-cdda-4462-8bc6-9d89f6180820" class="code"><code class="language-JavaScript">require(&#x27;dotenv&#x27;).config(); // If you&#x27;re using dotenv to manage environment variables
+const MistralClient = require(&#x27;@mistralai/mistralai&#x27;).default;
+
+const apiKey = process.env.MISTRAL_API_KEY; // Ensure this is set in your .env file or environment
+
+const client = new MistralClient(apiKey);
+
+async function generateContent(prompt) {
+    try {
+        const chatResponse = await client.chat({
+            model: &#x27;mistral-tiny&#x27;,
+            messages: [{ role: &#x27;user&#x27;, content: prompt }],
+        });
+
+        return chatResponse.choices[0].message.content;
+    } catch (error) {
+        console.error(&#x27;Error:&#x27;, error);
+        return null;
+    }
+}
+
+// Using the blog post prompt
+const blogPostPrompt = &quot;Write a comprehensive blog post about the latest trends in blockchain technology for 2024.&quot;;
+
+generateContent(blogPostPrompt)
+    .then(content =&gt; console.log(content))
+    .catch(error =&gt; console.error(error));</code></pre><p id="a6909b89-8921-49e3-ba1c-3d483e08eb5d" class="">5. Run Your Application</p><ul id="09985e84-0e5d-46a1-be4a-400686bb5a6b" class="bulleted-list"><li style="list-style-type:disc"><strong>Execute your script</strong>: Run your application with <code><strong>node app.js</strong></code>. This will execute the script, and you should see the AI-generated response in your console.</li></ul><h2 id="987d4389-e4fd-46d9-a1d2-1a25df1f1d08" class="">Conclusion</h2><p id="5ffc3fb8-5ba2-49ab-94a7-b686501c7751" class="">You have now created a basic AI content generator using Node.js and the OpenAI API. This application can serve as a foundation for more complex AI-driven projects. You can expand it by adding a web interface, integrating it into a blog platform, or even creating a custom API around it.</p><p id="69e6a2d6-ec59-40bd-9f1a-079164fd7b47" class="">As we embrace the era of AI in web development, consider the endless possibilities that such integrations can offer. What innovative applications can you envision for AI in your future projects?</p><h2 id="9a8d49bb-907f-4a40-b840-70fe6f76b5cc" class=""><strong>Additional Resources</strong></h2><p id="3f9be29a-4c86-489c-b622-a9fcb1cadbdc" class="">1. <strong><strong>Prompt engineering: </strong></strong><a href="https://platform.openai.com/docs/guides/prompt-engineering">https://platform.openai.com/docs/guides/prompt-engineering</a></p><p id="2fc86973-d98f-43e8-90f3-3c5d487e6a30" class="">2. <strong>Mistral Javascript Client</strong>: <a href="https://docs.mistral.ai/platform/client/">https://docs.mistral.ai/platform/client/</a></p><p id="24324471-2b63-4ebd-93a9-8d875cd864a8" class="">3. <strong>Prompt examples:</strong> <a href="https://platform.openai.com/examples">https://platform.openai.com/examples</a></p><p id="059e2fb4-a3e0-4fc1-af7a-37a46d868fd8" class="">4. <strong><strong>Prompt Engineering Guide:</strong></strong> <a href="https://www.promptingguide.ai/">https://www.promptingguide.ai/</a></p><p id="b3c33c01-1fbc-43c9-a1a4-cf3f9fdac1e5" class="">5. <strong><strong>The LLM Index - </strong></strong><a href="https://sapling.ai/llm/index">https://sapling.ai/llm/index</a></p><p id="020e7392-62d7-41ca-a34d-7e728dc822e4" class="">6. <strong>Open LLM Leaderboard - </strong><a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard">https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard</a></p><p id="44a7d06b-ca58-447b-99c3-5b34b752aac8" class="">7. <strong><strong>AlpacaEval  Leaderboard - </strong></strong><a href="https://tatsu-lab.github.io/alpaca_eval/">https://tatsu-lab.github.io/alpaca_eval/</a></p><p id="b4482a6e-9d76-44f7-abae-5df050df1643" class="">
+</p><hr id="0234ce54-de21-4e1d-9704-9087d3c8c877"/><h1 id="c715ff4b-95b9-499a-b19e-b80a0810c9ac" class=""><strong><strong>Module 3: Integrating AI Models to JS Apps</strong></strong></h1><p id="7d620b48-95d4-4040-8a53-6235463f454f" class="">This module further explores how popular AI models, both open and closed-source, can be seamlessly integrated into JavaScript applications. We will explore APIs, external libraries, and handling AI model responses, and conclude with a hands-on project that brings these concepts to life.</p><h2 id="f6126ec2-0b71-4e45-ad08-19e46d5e4119" class=""><strong>Exploring Open-Source AI Models like Stable-Diffusion and Gemini</strong></h2><p id="02efad14-de29-4628-8225-b8f172903369" class="">Open-source AI models offer a treasure trove of possibilities for developers. These models stand out for their accessibility and community-driven enhancements. Here are some popular Open-source AI models:</p><ul id="c12b6568-2072-4d84-aa23-1b4338b30f36" class="bulleted-list"><li style="list-style-type:disc"><a href="https://ai.meta.com/llama/"><strong>Llama 2</strong></a><strong> - </strong>Developed by Meta. You can explore the demo on HuggingFace: <a href="https://huggingface.co/spaces/ysharma/Explore_llamav2_with_TGI">https://huggingface.co/spaces/ysharma/Explore_llamav2_with_TGI</a>.</li></ul><ul id="b0e5a9d8-8152-4fdb-954c-6ca504b16259" class="bulleted-list"><li style="list-style-type:disc"><a href="https://falconllm.tii.ae/"><strong>Falcon </strong></a><strong> </strong> – Developed by the Technology Innovation Institute (TII), UAE. You can also play with their demo on HuggingFace: <a href="https://huggingface.co/spaces/tiiuae/falcon-180b-demo">https://huggingface.co/spaces/tiiuae/falcon-180b-demo</a>.</li></ul><ul id="2ff29dac-c53e-465d-9bf3-d9a7a8ecda29" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.mosaicml.com/mpt"><strong>MPT-30B and MPT-7B</strong></a><strong> - </strong>Developed by MosaicML. Try it out here <a href="https://huggingface.co/mosaicml/mpt-30b">https://huggingface.co/mosaicml/mpt-30b</a>.</li></ul><ul id="33a52326-cb85-4c09-8db9-60302692b45f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://stability.ai/stable-image#:~:text=Download%20Code-,Stable%20Diffusion%20XL,-Stable%20Diffusion%20XL"><strong>Stable Diffusion XL</strong></a>: Released by Stability AI, this model has made waves in the AI community for its ability to generate high-quality images from textual descriptions. There’s an official sandbox you can play with: <a href="https://platform.stability.ai/sandbox/text-to-image">https://platform.stability.ai/sandbox/text-to-image</a> and also a HuggingFace setup: <a href="https://huggingface.co/spaces/stabilityai/stable-diffusion">https://huggingface.co/spaces/stabilityai/stable-diffusion</a></li></ul><ul id="a9a22093-664e-4554-845e-f11b0f09776c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://deepmind.google/technologies/gemini/#introduction"><strong>Gemini</strong></a>: Released by Google, Gemini is a natural language processing multimodal model excelling in sentiment analysis, text classification, and language generation tasks, providing developers with tools to create applications that understand, interpret, and generate human-like text. <strong>Documentation</strong>: <a href="https://ai.google.dev/">https://ai.google.dev/</a></li></ul><p id="713f49c3-5bc2-4bff-aa7f-814e21de9642" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d72f1383-14a6-4bfa-a435-628042bc3e75"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">It’s important to note that not all these open-source models are available for commercial use.<figure id="9bc839ad-53ae-4490-8cc0-7d5e5f118ec2" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-03_at_10.30.03_AM.png"><img style="width:966px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-03_at_10.30.03_AM.png"/></a><figcaption><a href="https://huggingface.co/blog/llama2#why-llama-2">https://huggingface.co/blog/llama2#why-llama-2</a></figcaption></figure></div></figure><p id="034d66cc-d0d5-4533-bb0e-087e0f8cdbf6" class="">There are also other open-source models like BLOOM and Alpaca. You can check out the Sapling AI’s LLM index for a list of other <strong><strong>Open Source LLMs: </strong></strong><a href="https://sapling.ai/llm/index#:~:text=Link-,Open%20Source,-LLMs">https://sapling.ai/llm/index#:~:text=Link-,Open Source,-LLMs</a></p><h2 id="7b4e9bf7-50d2-43c5-ac85-2dc01be69d91" class="">Exploring Closed-Source (Commercial) AI Models like Whisper and Dall-E</h2><p id="1fcdcdf7-dd88-4f9e-a7b9-7f0b79d5126d" class="">Closed-source AI models, often backed by commercial entities, come with the advantage of advanced capabilities and dedicated support. Models like Whisper and Dall-E are prime examples of this category.</p><ul id="ba4a2cc8-ba11-40fa-8208-4c4b4bb684dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Whisper</strong>: Developed by OpenAI, Whisper is an automatic speech recognition system that is perfect for applications requiring transcription and translation.</li></ul><ul id="96f9b90a-3f59-45a4-841b-3f9ea3031042" class="bulleted-list"><li style="list-style-type:disc"><strong>Dall-E</strong>: Also from OpenAI, Dall-E is a cutting-edge AI model capable of generating detailed images from textual descriptions. It&#x27;s an excellent tool for creative applications that merge the worlds of art and AI.</li></ul><p id="0cacd524-d908-47ca-976f-232c79fafbd2" class="">There are also other Commercial models like <a href="https://www.anthropic.com/">Claude by Anthropic</a> with Demo: <a href="https://claude.ai/">https://claude.ai/</a> and <a href="https://docs.cohere.com/docs/the-cohere-platform">Cohere by Cohere</a>.</p><h2 id="588644d6-0ca9-4bba-a6a2-7f950628de77" class="">Working with APIs and External Libraries</h2><p id="f5e3a24d-4841-44c9-9e0c-633b9e168846" class="">Integrating AI models into JavaScript applications often involves working with APIs and external libraries. This process includes sending requests to AI models and processing their responses. JavaScript, with its extensive library ecosystem, simplifies these integrations, allowing for seamless communication between your application and AI services.</p><h3 id="d0070604-3f16-4f79-aed2-155bc974d436" class=""><strong>Advantages of API Endpoints vs SDKs</strong>:</h3><ul id="555f0753-675f-4086-be2d-a1a5e6eb0ecc" class="bulleted-list"><li style="list-style-type:disc"><strong>API Endpoints</strong>:<ul id="d09a6139-77dc-4298-a91e-fe4e4200e84b" class="bulleted-list"><li style="list-style-type:circle">No need to install additional libraries or SDKs.</li></ul><ul id="3108d8f0-57e1-4e6a-aead-4dda36998806" class="bulleted-list"><li style="list-style-type:circle">Language agnostic: you can use them with any language that can make HTTP requests.</li></ul></li></ul><ul id="43d820b2-5460-415c-863d-6483f730fd55" class="bulleted-list"><li style="list-style-type:disc"><strong>SDKs</strong>:<ul id="e8f75f52-ef22-407c-9d00-c6f7622c4f60" class="bulleted-list"><li style="list-style-type:circle">Simplify complex API interactions.</li></ul><ul id="8f19c83a-eed7-4656-ae01-bbd766d75679" class="bulleted-list"><li style="list-style-type:circle">Often provide additional utility functions.</li></ul></li></ul><p id="d2c65253-0d71-48f7-a403-afb5a1fb557b" class="">For example, instead of using the Mistral client SDK as we did in module 2, we can interact with the chat completions endpoint using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">Node.js native </a><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"><code>fetch</code></a><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"> API</a> to create our AI content generator as shown below:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5a737d08-70fa-4ebd-92f3-64a9415d8f30" class="code"><code class="language-JavaScript">require(&#x27;dotenv&#x27;).config(); //install dotenv
+
+const MISTRAL_API_URL = &quot;https://api.mistral.ai/v1/chat/completions&quot;;
+const apiKey = process.env.MISTRAL_API_KEY; // Ensure this is set in your .env file or environment
+
+async function generateContent(prompt) {
+    const requestBody = {
+        model: &#x27;mistral-tiny&#x27;,
+        messages: [{ role: &#x27;user&#x27;, content: prompt }]
+    };
+
+    try {
+        const response = await fetch(MISTRAL_API_URL, {
+            method: &#x27;POST&#x27;,
+            headers: {
+                &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+                &#x27;Accept&#x27;: &#x27;application/json&#x27;,
+                &#x27;Authorization&#x27;: `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+    } catch (error) {
+        console.error(&#x27;Error:&#x27;, error);
+        return null;
+    }
+}
+
+// Using the blog post prompt
+const blogPostPrompt = &quot;Who is the most renowned French painter?&quot;;
+
+generateContent(blogPostPrompt)
+    .then(content =&gt; console.log(content))
+    .catch(error =&gt; console.error(error));</code></pre><h2 id="534d4362-b408-4012-9a60-65570a43331e" class="">Handling AI Model Responses and Interactivity</h2><p id="4500856d-6903-4af7-8e25-89e719cd3f74" class="">Effectively managing responses from AI models is crucial. This involves parsing the data returned by the models, error handling, and creating interactive interfaces that can showcase the AI&#x27;s capabilities in a user-friendly manner. Below is a code snippet that parses the data returned, handles errors, and returns the resulting response in a simple yet effective manner. In future examples and projects, we will show how to create interactive UIs in a way that communicates the AI responses to the user. </p><h2 id="c5de0865-32ec-4868-a9b1-8de5cfa2b9d2" class="">Project: Build an Image Generation App Using Dall-E Integration</h2><p id="9ebec5da-9796-4699-8c47-910872033087" class="">This blog post will guide you through setting up a simple React application using Vite, integrating OpenAI&#x27;s Dall-E API to generate images, and displaying them using a form-based UI.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28518554-c507-4d25-a648-dc52527fbc42"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">We will be using OpenAI Documentation on Image Generation: <a href="https://platform.openai.com/docs/api-reference/images/create">https://platform.openai.com/docs/api-reference/images/create</a></div></figure><h3 id="31470155-41f6-4aa1-8ab1-bb83dcb6df23" class="">Setting Up the Project</h3><ol type="1" id="fa9a34f5-9db7-42b2-8a6c-5c290f1d3809" class="numbered-list" start="1"><li><strong>Initialize a Vite + React Project</strong>:<ul id="a28ac0a0-2f50-478f-a8a5-4081412b742c" class="bulleted-list"><li style="list-style-type:disc">Ensure you have Node.js installed.</li></ul><ul id="b07f6066-12b8-4abf-9088-f0366ec80509" class="bulleted-list"><li style="list-style-type:disc">Create a new Vite project with React by running <code><strong>npm init vite@latest my-dall-e-app -- --template react</strong></code>.</li></ul><ul id="f4692265-bf0f-4e9a-a1c6-586031b003d0" class="bulleted-list"><li style="list-style-type:disc">Navigate to the project directory and install dependencies: <code><strong>cd my-dall-e-app &amp;&amp; npm install</strong></code>.</li></ul><ul id="37babd27-db49-481b-a783-5159a704b628" class="bulleted-list"><li style="list-style-type:disc">Start the development server: <code><strong>npm run dev</strong></code>.</li></ul></li></ol><ol type="1" id="a022340b-48ba-48c6-838d-b1a16778073f" class="numbered-list" start="2"><li><strong>Install OpenAI SDK</strong>:<ul id="8879791d-74d5-4a9d-a0ad-8a9667c5ee73" class="bulleted-list"><li style="list-style-type:disc">In your project directory, install the OpenAI SDK: <code><strong>npm install openai</strong></code>.</li></ul><ul id="9aeb20ea-3299-4a39-933b-127c0a8f8776" class="bulleted-list"><li style="list-style-type:disc">Remember to add your OpenAI API key to a <code><strong>.env.local</strong></code> file as <code><strong>REACT_APP_OPENAI_API_KEY=your_api_key_here</strong></code>.<br/><br/></li></ul></li></ol><h3 id="aa0064a6-c792-4fae-a5b1-6a2840e989b2" class="">Building the React Frontend</h3><ol type="1" id="89066bfb-632d-4714-9f94-40e36a586c9b" class="numbered-list" start="1"><li><strong>Modify </strong><code><strong>App.jsx</strong></code>:<ul id="c11d594a-62e9-48a5-9106-398a38f675e2" class="bulleted-list"><li style="list-style-type:disc">Replace the existing code in <code><strong>App.jsx</strong></code> with the following to create a form-based UI for image generation:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5b83df6d-70bf-42e8-a4eb-84cb5dec1e7c" class="code"><code class="language-JavaScript">import React, { useState } from &#x27;react&#x27;;
+import OpenAI from &#x27;openai&#x27;;
+
+function App() {
+  const [prompt, setPrompt] = useState(&#x27;&#x27;);
+  const [imageUrl, setImageUrl] = useState(&#x27;&#x27;);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const generateImage = async (promptText) =&gt; {
+    setIsLoading(true);
+    try {
+      const apiKey = process.env.REACT_APP_OPENAI_API_KEY; // Ensure the API key is set in your environment variables
+      const openai = new OpenAI({
+        apiKey: apiKey
+      });
+      const response = await openai.images.generate({
+        model: &#x27;dall-e-3&#x27;,
+        prompt: promptText,
+      });
+
+      setImageUrl(response.data[0].url);
+    } catch (error) {
+      console.error(&#x27;Error:&#x27;, error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = (e) =&gt; {
+    e.preventDefault();
+    if (prompt) {
+      generateImage(prompt);
+    }
+  };
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Dall-E Image Generator&lt;/h1&gt;
+      &lt;form onSubmit={handleSubmit}&gt;
+        &lt;input
+          type=&quot;text&quot;
+          value={prompt}
+          onChange={(e) =&gt; setPrompt(e.target.value)}
+          placeholder=&quot;Enter a prompt for Dall-E&quot;
+        /&gt;
+        &lt;button type=&quot;submit&quot; disabled={isLoading}&gt;
+          {isLoading ? &#x27;Generating...&#x27;: &#x27;Generate Image&#x27;}
+        &lt;/button&gt;
+      &lt;/form&gt;
+      {imageUrl &amp;&amp; &lt;img src={imageUrl} alt=&quot;Generated from Dall-E&quot; style={{ marginTop: &#x27;20px&#x27; }} /&gt;}
+    &lt;/&gt;
+  );
+}
+
+export default App;</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3fa30c11-1401-49ac-9804-373bafce2f68"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Note that the button text changes based on the API response status so we can inform the user of what’s going on.<br/><br/><code>{isLoading ? &#x27;Generating...&#x27; : &#x27;Generate Image&#x27;}</code></div></figure></li></ol><ul id="ffbcf956-4741-4731-bcc2-4557585694bd" class="toggle"><li><details open=""><summary><strong>API Endpoint Alternative</strong></summary><p id="0b06f5ad-1389-4138-96cf-c52fd01ab201" class="">Alternatively, instead of using the SDK, you can also decide to query the API endpoint using the native <code>fetch</code> API as shown below:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ea277134-527b-4b10-9e06-753d00a51f9e" class="code"><code class="language-JavaScript">const response = await fetch(
+        &#x27;https://api.openai.com/v1/images/generations&#x27;,
+        {
+          method: &#x27;POST&#x27;,
+          headers: {
+            &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: &#x27;dall-e-3&#x27;,
+            prompt: promptText,
+            n: 1,
+            size: &#x27;1024x1024&#x27;,
+	      }),
+    }
+  );
+
+  const data = await response.json();
+  setImageUrl(data.data[0].url);</code></pre><p id="aba0110d-c100-47c0-9224-9c1447dc9367" class="">
+</p></details></li></ul><ul id="9dfc6910-41f2-4896-b38d-aa14e752541c" class="toggle"><li><details open=""><summary><strong>Bonus: AI Voice App</strong></summary><p id="6ad858b9-b2d3-4ba7-b8a1-5186ff481eab" class="">If you’re interested in building a text-to-speech or speech-to-text-app app, use the newly-gained knowledge and apply it in integrating OpenAI’s Audio models.<br/><br/><a href="https://platform.openai.com/docs/guides/text-to-speech">https://platform.openai.com/docs/guides/text-to-speech</a></p></details></li></ul><ol type="1" id="31690c41-6901-4870-9bd1-fdf444aa0b56" class="numbered-list" start="2"><li><strong>Run and Test Your Application</strong>:<ul id="7de80e97-27db-4e1a-bf3b-7f9749406055" class="bulleted-list"><li style="list-style-type:disc">Start your application: <code><strong>npm run dev</strong></code>. You should have something like the screenshot below:<figure id="15d41306-5d33-472c-8981-ac800f607869" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-03_at_11.55.17_AM.png"><img style="width:1039px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-03_at_11.55.17_AM.png"/></a></figure></li></ul><ul id="ce4ad791-5672-42d0-b789-1bbc90f34eee" class="bulleted-list"><li style="list-style-type:disc">Visit the local development server URL (usually <code><strong>http://localhost:3000</strong></code>).</li></ul><ul id="c09fe58a-d25e-4525-8d43-a1174df55dfe" class="bulleted-list"><li style="list-style-type:disc">Try entering different prompts to generate images and, of course, style it using your preferred CSS setup.</li></ul></li></ol><p id="bea8540a-1bae-4ea3-85bf-da153489df23" class="">With these steps, you&#x27;ve successfully built an image generation application using OpenAI&#x27;s Dall-E and React. This application demonstrates the power of AI in creative endeavors and how easily it can be integrated into modern web applications.</p><h2 id="bcfa1c32-4758-4e33-ae4f-e548a099bcc7" class=""><strong>Conclusion</strong></h2><p id="72dffa03-602b-4fa1-b56b-14f8570d5f12" class="">As you conclude this module, reflect on the immense potential of integrating various AI models into JavaScript applications. The ability to work with both open-source and closed-source models opens up a world of creativity and innovation. How will you leverage these AI technologies in your future JavaScript projects to create applications that were once thought impossible? Feel free to share with me your ideas on <a href="https://discord.gg/YSRuyrEuug">Discord</a>.</p><h2 id="046d09d4-3618-4c38-99da-cd294193e625" class=""><strong>Additional Resources</strong></h2><p id="027221fe-1199-4d48-88a5-6040fa79e155" class="">1. <strong>Image Generation with Stable Diffusion and Replicate</strong>: <a href="https://replicate.com/docs/get-started/nodejs">https://replicate.com/docs/get-started/nodejs</a></p><p id="095f597a-f023-4c7e-ac1b-7949f77ec452" class="">2. <strong>Google AI JavaScript SDK: </strong><a href="https://github.com/google/generative-ai-js">https://github.com/google/generative-ai-js</a></p><p id="d5282184-15d9-48c5-8c71-3cf9802c3b14" class="">
+</p><hr id="71de7875-f1e2-4900-9fe4-13c723bc94e6"/><h1 id="71b74cb0-56ac-406f-8b86-abec8e3f9112" class="">Module 4: Introduction to Retrieval Augmented Generation</h1><p id="f3138c70-140b-410a-9a00-a5cd7642226f" class="">Imagine a world where AI not only understands and generates text but also embarks on a quest for knowledge, seeking information from vast data oceans to enlighten its responses. This is the world of Retrieval Augmented Generation (RAG) - a realm where AI models are no longer confined to their training data but can dynamically retrieve and utilize external information. </p><p id="db6385dc-bc19-41be-b627-2d31ca3b9fe5" class="">In this module, we will explore the intricacies of RAG, understand the role of embeddings and vector databases, and learn about tools that facilitate the development of RAG applications. By the end of this module, you will be equipped to build a research assistant tool using Next.js, harnessing the power of RAG.</p><h2 id="3685bb62-eefc-4541-a72c-f9fa786feeca" class="">Basics of Retrieval Augmented Generation (RAG)</h2><p id="688d06ed-5420-4675-a5da-733958d945a0" class="">Retrieval Augmented Generation is a technique where a generative model, like GPT-3.5, is combined with an external knowledge retrieval step in a way that improves the accuracy and reliability of the model’s responses. This hybrid approach allows the model to pull in relevant information in real-time, enhancing its responses or generation with details far beyond its training data.</p><h3 id="aa1faac9-11e7-44f9-a768-5851d1b65e0e" class=""><strong>How RAG Works</strong> </h3><p id="e1ac0d56-7de2-46af-9795-de4699958e62" class="">RAG operates in two steps. </p><p id="f0f9deb4-68a7-4f2b-82ca-25b44852762d" class=""><strong>Retrieval:<br/><br/></strong>First, a query is used to retrieve relevant information from (multiple) documents or data from a large dataset. <br/><br/><strong>Content generation:</strong></p><p id="509b66bc-b8e8-462b-8ee6-5f03c85c98ed" class="">Then, this retrieved data is combined with the query to generate a response. This process ensures that the responses are not just based on learned patterns but are also informed by specific, up-to-date, and relevant external data.</p><figure id="2dc09f45-db2e-4050-9bbe-7b54c79e0a1b" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Colorful_Doodle_Creativity_Ideas_Brainstorm_Graph_(1).png"><img style="width:1024px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Colorful_Doodle_Creativity_Ideas_Brainstorm_Graph_(1).png"/></a></figure><h2 id="e0560f67-1c5f-4caf-9c20-92729a35951e" class="">Understanding Embeddings and Vector Databases</h2><p id="18f6470c-8d59-42cf-85c7-241d15540cf5" class="">To understand RAG, one must grasp the concept of embeddings and vector databases.</p><ul id="b8d3162e-7b09-4a31-bae6-58af8efea8e1" class="bulleted-list"><li style="list-style-type:disc"><strong>Embeddings:</strong> In AI, embeddings are numerical representations of data, whether text, images, or sounds, in a high-dimensional space. For example, word embeddings represent words in a vector space where similar words are closer together. They are crucial for tasks like semantic search, where we need to find the most relevant documents based on their content. <br/>Some of the common Text Embedding models developers use in their AI applications are developed by OpenAI, Google, Cohere, Jina and Mistral. Since we will be discussing and integrating Langchain into our module project, you can have a look at the list of embedding models available for use: <br/><a href="https://js.langchain.com/docs/integrations/text_embedding">https://js.langchain.com/docs/integrations/text_embedding</a>. <br/><br/></li></ul><ul id="288545ee-48a8-4958-9fbc-6d647e5c96ef" class="bulleted-list"><li style="list-style-type:disc"><strong>Vector Databases</strong>: These databases are designed to efficiently store and query embeddings and enable rapid similarity searches among large collections of embeddings, essential for the retrieval step in RAG. Some of the popular vector databases are <a href="https://github.com/facebookresearch/faiss">FAISS</a> from Meta, <a href="https://github.com/chroma-core/chroma">Chroma</a>, <a href="https://github.com/nmslib/hnswlib">HNSWLib</a>, <a href="https://js.langchain.com/docs/integrations/vectorstores/memory">Memory</a>, and<a href="https://github.com/pinecone-io/pinecone-ts-client"> Pinecone</a>. We will be using the last two for our module project. You can also take a look at the list of vector databases available for integration by Langchain: <a href="https://js.langchain.com/docs/integrations/vectorstores">https://js.langchain.com/docs/integrations/vectorstores</a> </li></ul><figure id="68df1e19-36ba-438f-b12a-c238fdec3281" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Colorful_Doodle_Creativity_Ideas_Brainstorm_Graph.png"><img style="width:1024px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Colorful_Doodle_Creativity_Ideas_Brainstorm_Graph.png"/></a></figure><h2 id="393a2e80-b523-4129-acf8-458a3139d4a3" class="">Overview of Open-Source RAG Tools of the Trade</h2><p id="dd7590e0-8d16-4e0b-9ea8-c14f3069c3cd" class="">Several open-source tools have emerged to facilitate the development of RAG systems:</p><ul id="f06b2e05-d27a-46a3-8587-685a51d834e9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/run-llama/LlamaIndexTS"><strong>Llama Index</strong></a>: A data framework that facilitates the ingestion of data, storage, and retrieval of embeddings generated from your own data, making it easier to integrate LLMs into your applications with your own data.</li></ul><ul id="b744d864-1d2c-4cd7-9883-77871a28c75c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/embedchain/embedchain/tree/main/embedchain-js"><strong>Embedchain</strong></a>: This RAG framework helps extract your data into relevant chunks and embeddings, making them useful in powering contextual responses to your queries.</li></ul><ul id="7a68fb02-e9ae-46fc-bdc5-1002b2d02d5d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://python.langchain.com/"><strong>🦜️🔗 </strong></a><a href="https://github.com/langchain-ai/langchain"><strong>Langchain</strong></a>: A framework for setting up AI applications that can interact with external knowledge bases. It provides an ecosystem of integrations that allow you to ingest data, create and store embeddings, and set up optimized retrieval interfaces.</li></ul><h2 id="c94f111b-dec7-49c6-bebf-df8cdc0d3df2" class="">Integrating Vercel AI SDK</h2><p id="1f84ad01-5401-4759-bcdd-eb797a7fb590" class="">To integrate the aforementioned models and tools into a JavaScript environment like Next.js, we will be using <a href="https://sdk.vercel.ai/docs">Vercel’s open-source AI SDK</a> to streamline the AI development process.</p><h2 id="2361a8cc-b9c8-4716-b359-7d76c60964de" class="">Implementing RAG in Next.js</h2><p id="f9f8dab1-9b23-4c21-9981-8b5714c75a11" class="">Incorporating RAG into a Next.js application involves setting up the backend to handle RAG operations and creating frontend components to interact with this backend.</p><ul id="b8ad3d79-30b6-4c46-b2f6-b9cfab2ff41d" class="bulleted-list"><li style="list-style-type:disc"><strong>Frontend Integration</strong>: Create UI components to take user documents and queries, communicate with the backend, and display the generated responses.</li></ul><ul id="6701cb7b-4d9e-4a05-aac7-4302f24e4b25" class="bulleted-list"><li style="list-style-type:disc"><strong>Backend Setup</strong>: Implement the logic to retrieve data from the vector database and pass it to the RAG model for response generation.</li></ul><p id="be4df493-05fb-431b-ad2d-8021f12b67ec" class="">
+</p><h2 id="1d972dbe-5c40-4447-952b-cdbba4aa8d45" class="">Module Project<strong>: Building a Research Assistant Tool with Next.js and Langchain</strong></h2><p id="40dbf7d1-b07e-4b80-b81f-f22c28c2f3a1" class="">
+</p><p id="939beeb8-dfbb-4517-b26d-7695eda9d9ff" class="">Imagine having a research assistant at your fingertips, one who can understand and provide insights from any PDF document you provide. This is not just a figment of imagination anymore; it&#x27;s a reality we&#x27;re going to build together using Next.js, Langchain, and vector databases like MemoryVectorStore and Pinecone.</p><h3 id="1be4b3a5-f49d-42dc-bb9d-90660754f813" class="">Our Tech Stack</h3><p id="44b67fdd-98b1-47fb-b00b-ef5045f44c6c" class="">For this project, we will be using Next.js, TypeScript, Tailwind CSS, AI SDK, and Langchain. Additionally, we&#x27;ll be exploring the use of vector databases by building a two-step research assistant tool, utilizing both MemoryVectorStore for one-time query retrieval and Pinecone for conversational chat retrieval. This dual approach leverages the strengths of each vector database to provide a comprehensive and versatile research tool.</p><h3 id="012ebdb6-b470-4a7c-a9c9-05a843bfc905" class="">Prerequisites</h3><p id="7cccd62b-bd87-4b20-8810-047b6231f390" class="">Before we dive in, ensure you have Node installed on your machine. You&#x27;ll also need an OpenAI API Key, which you can get from <a href="https://openai.com/">OpenAI</a>. </p><h3 id="b302bcaa-2d81-4add-a785-1b10c4ce6f3c" class="">Setting Up Next.js</h3><p id="59319144-ba16-469c-9ac2-67f6f28db92d" class="">Start by creating a new Next.js project:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d0d1c82-c7b6-4985-920a-b8d048be39d7" class="code"><code class="language-JavaScript">npx create-next-app@latest research-assistant</code></pre><p id="c2f59628-88e7-4a23-b563-215e30322cb7" class="">Follow the CLI prompts to bootstrap your project. Opt for using the App Router, the <code><strong>src/</strong></code> directory, and choose to install Tailwind CSS too.</p><figure id="f24964db-e267-4f31-ba72-796fb702e1f8" class="image"><a href="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-03_at_4.12.26_PM.png"><img style="width:656px" src="Practical%20AI%20Application%20Development%20for%20Javascrip%200c6aafb4b5d7498e9e6d1589994f3c9b/Screenshot_2024-01-03_at_4.12.26_PM.png"/></a></figure><h3 id="116b8df2-a82c-4a85-bc7e-4ffdb940a3a6" class="">Creating the <code><strong>.env.local</strong></code> File</h3><p id="260def64-a50f-4db3-bac9-54f09c6e951f" class="">In your project directory, create a <code><strong>.env.local</strong></code> file to store environment variables:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7ebdb049-baae-4510-b342-562ac8cedf5a" class="code"><code class="language-JavaScript">OPENAI_API_KEY=&quot;openai_api_key&quot;</code></pre><h3 id="7a7dd6b5-eba2-4e74-a09d-f0633bbc0c14" class="">Installing Necessary Packages</h3><p id="5b0a172d-7101-4264-b3b9-2d453e928fde" class="">Install the packages needed for our project:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6015c7ba-a3a4-4df9-a54b-3dbf2ce731e4" class="code"><code class="language-JavaScript">npm install langchain pdf-parse ai react-dropzone @pinecone-database/pinecone</code></pre><p id="7a9be07f-a0c1-4bfb-b50a-0808a2f88c41" class="">
+</p><h3 id="322322af-6eaa-4c80-b428-6ad9a8a4d376" class="">Step 1: One-Time Query Retrieval with MemoryVectorStore</h3><p id="1e873072-75c2-4a4a-adb5-95dafcb8dfc0" class="">In the first part of our application, we use MemoryVectorStore to handle one-time queries. This setup is ideal for quick document summarization and extracting key information from uploaded research papers.</p><h3 id="eae851b7-13f0-42ca-b2e0-fb0d0fa660ac" class="">Crafting the <code><strong>/ingest-research</strong></code> Route</h3><p id="fff47662-ae05-4d6b-beab-bfa58c984042" class="">To begin building our research assistant tool, we need to create a route for ingesting research material, specifically PDF documents. This route, named <code><strong>/ingest-research</strong></code>, will be responsible for handling the upload of PDF files and processing them using Langchain to extract meaningful data that our AI can later utilize.</p><p id="0222d8c5-751c-4cf4-b64f-7433731a0245" class="">Start by creating a new file <code><strong>route.ts</strong></code> under the directory <code><strong>app/api/ingest-research</strong></code>. The code in this file will set up an API endpoint in our Next.js application, which will handle the uploading and processing of PDF files.</p><p id="31c76ef1-b98d-43cc-8acf-e23a2be49ade" class="">Here&#x27;s a detailed look at the code for the <code><strong>/ingest-research</strong></code> route:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="169299dc-a920-44a7-93bc-399486d4c2e8" class="code"><code class="language-JavaScript">import { PDFLoader } from &quot;langchain/document_loaders/fs/pdf&quot;;
+import { NextRequest, NextResponse } from &quot;next/server&quot;;
+import { PineconeClient } from &quot;@pinecone-database/pinecone&quot;;
+import { OpenAIEmbeddings } from &quot;langchain/embeddings/openai&quot;;
+import { PineconeStore } from &quot;langchain/vectorstores/pinecone&quot;;
+import { RecursiveCharacterTextSplitter } from &quot;langchain/text_splitter&quot;;
+
+export async function POST(request: NextRequest) {
+  // Extract FormData from the request
+  const data = await request.formData();
+  // Extract the uploaded PDF file
+  const file = data.get(&quot;file&quot;) as File;
+
+  // Ensure a file is provided
+  if (!file) {
+    return NextResponse.json({ success: false, error: &quot;No file provided&quot; });
+  }
+
+  // Confirm the file is a PDF
+  if (file.type !== &quot;application/pdf&quot;) {
+    return NextResponse.json({ success: false, error: &quot;File is not a PDF&quot; });
+  }
+
+  //Load the PDF and split it into smaller documents
+  const pdfLoader = new PDFLoader(file);
+	  const textSplitter = new RecursiveCharacterTextSplitter({
+	  chunkSize: 1000,
+	  chunkOverlap: 200,
+	  });
+  const splitDocuments = await pdfLoader.loadAndSplit(textSplitter);
+	
+// Create embeddings for the documents
+  const embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY });
+  const vectorStore = await MemoryVectorStore.fromDocuments(splitDocuments, embeddings);
+
+  // Set up the RAG model
+  const model = new ChatOpenAI({ modelName: &quot;gpt-3.5-turbo&quot;, openAIApiKey: process.env.OPENAI_API_KEY });
+  const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());
+
+  // Generate a summary of the research document
+  const response = await chain.call({
+    query: &quot;Summarize the primary arguments or findings in this research document, and format the output with likely questions as headers and answers as paragraphs in Markdown&quot;,
+  });
+
+  return NextResponse.json({ success: true, summary: response.text });
+}</code></pre><p id="570225ef-3b66-4e01-8e47-d08d4f91a5ea" class="">In this setup, the Langchain <code><strong>RetrievalQAChain</strong></code> uses the MemoryVectorStore for efficient retrieval of relevant document sections, which the <code><strong>ChatOpenAI</strong></code> model then summarizes.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f490fb41-9092-4429-a9b5-81cc6ecaae8a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">The MemoryVectorStore is ephemeral, which is why we need to set up Pinecone for our next step.</div></figure><h3 id="ca6e1dfc-7591-45e5-acf0-73304a7e983c" class="">Step 2: Conversational Chat Retrieval with Pinecone</h3><p id="623de922-6960-4cd8-bb83-4e783151ec8d" class="">The second part of our API route enhances the user experience by enabling a conversational chat interface with the documents. For this, we integrate Pinecone, a scalable vector database perfect for handling conversational context and maintaining state across queries.</p><h3 id="bdf63098-3ed8-4b4d-9ee5-1f162dfe4eb6" class=""><strong>Advantages of Pinecone for Conversational Retrieval</strong></h3><ul id="c040cd65-fac2-4099-9167-5e089df77966" class="bulleted-list"><li style="list-style-type:disc"><strong>Stateful Interactions</strong>: Pinecone helps us maintain the context of a conversation, allowing the AI to provide coherent and consistent responses over a session.</li></ul><ul id="b97e146e-38e1-42a8-96db-4252829b5f90" class="bulleted-list"><li style="list-style-type:disc"><strong>Scalability</strong>: It is designed to handle large-scale vector datasets efficiently, making it suitable for extensive research libraries.</li></ul><ul id="152ce39d-e086-492c-b9a1-a4b784e8a89d" class="bulleted-list"><li style="list-style-type:disc"><strong>Real-time Responses</strong>: Pinecone&#x27;s architecture ensures quick retrieval, essential for maintaining a fluid conversation.</li></ul><h3 id="04651c23-333b-4d0e-b429-d6115f6512bd" class="">Signup for Pinecone</h3><p id="7b78e251-4768-4a1e-9576-e4bc3ab93a0c" class="">For this, sign up for a free-tier starter account at <a href="https://pinecone.io/">Pinecone</a>. Create an Index with the name of your choice (e.g., <code>research-assistant</code>) and set the Dimensions to 1536, aligning with OpenAI model requirements and the details to your <code>.env</code> file:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="508e5859-7508-4bf4-b6d1-48be8e130365" class="code"><code class="language-JavaScript">PINECONE_API_KEY=&quot;pinecone_api_key&quot;
+PINECONE_INDEX_NAME=&quot;research-assistant&quot;</code></pre><p id="2021433d-caf5-44c7-95b4-c65703d2f8e3" class="">Add the Pinecone setup as shown below after <code>// Create embeddings for the documents</code> line in the <code><strong>/ingest-research</strong></code> route. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7589070c-a09d-4f63-bd30-a98f140c67be" class="code"><code class="language-JavaScript">// Initialize the Pinecone client
+  const pineconeClient = new PineconeClient();
+  await pineconeClient.init({
+    apiKey: process.env.PINECONE_API_KEY ?? &quot;&quot;,
+    environment: &quot;us-east-1-aws&quot;,
+  });
+  const index = pineconeClient.Index(process.env.PINECONE_INDEX_NAME);
+
+  // Store the processed documents in Pinecone 
+ await PineconeStore.fromDocuments(splitDocuments, new OpenAIEmbeddings(), {
+    pineconeIndex,
+    maxConcurrency: 5,
+     namespace: filename,
+     textKey: &#x27;text&#x27;
+    });</code></pre><p id="bba2d8fe-937d-4895-8f37-b87c693290d3" class="">Here’s the link to the full version of the <code><strong>/ingest-research</strong></code> route.</p><h3 id="988c2c91-7f4f-4eb0-bbe5-621033d196ee" class="">Building the <code><strong>/chat-research</strong></code> Route</h3><p id="df7160a9-9717-4f47-b607-146e89005e4d" class="">The next step in our project is to create the <code><strong>/chat-research</strong></code> route. This endpoint will be the core of our research assistant, handling user queries by retrieving relevant information from our vector store and generating insightful responses using OpenAI models.</p><p id="3904ea50-8076-4460-94f2-f527f5bad81a" class="">Create a new file <code><strong>route.ts</strong></code> under the directory <code><strong>app/api/chat-research</strong></code>. This file will contain the logic for processing user queries and interfacing with our AI model.</p><p id="d5bb6586-5db9-48fa-9d11-c38e301e8dcf" class="">Here’s the full code for the <code><strong>/chat-research</strong></code> route:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f0df0091-62e6-4bca-8245-f00ad073dece" class="code"><code class="language-JavaScript">import { NextRequest, NextResponse } from &quot;next/server&quot;;
+import { PineconeClient } from &quot;@pinecone-database/pinecone&quot;;
+import { PineconeStore } from &quot;langchain/vectorstores/pinecone&quot;;
+import { OpenAIEmbeddings } from &quot;langchain/embeddings/openai&quot;;
+import { OpenAI } from &quot;langchain/llms/openai&quot;;
+import { VectorDBQAChain } from &quot;langchain/chains&quot;;
+import { CallbackManager } from &quot;langchain/callbacks&quot;;
+
+export async function POST(request: NextRequest) {
+  // Parse the JSON body from the request
+  const body = await request.json();
+
+  // Initialize the Pinecone Client
+  const pineconeClient = new PineconeClient();
+  await pineconeClient.init({
+    apiKey: process.env.PINECONE_API_KEY,
+    environment: &quot;us-east-1-aws&quot;,
+  });
+  const index = pineconeClient.Index(process.env.PINECONE_INDEX_NAME);
+
+  // Prepare the vector store with the Pinecone index
+  const vectorStore = new PineconeStore(new OpenAIEmbeddings(), { index });
+
+  // Set up the OpenAI model
+  const openAIModel = new OpenAI({
+    modelName: &quot;gpt-3.5-turbo&quot;,
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  // Create a Langchain chain for Q&amp;A
+  const chain = new VectorDBQAChain(openAIModel, vectorStore);
+
+  // Process the query and generate a response
+  const response = await chain.call({ query: body.prompt });
+
+  return NextResponse.json({ response });
+}</code></pre><p id="f7307fd2-d6c3-4063-8f37-b4f916349656" class="">
+</p><h3 id="992ab9ac-d149-4023-b7ee-eebd0a550f46" class="">Building the Frontend</h3><p id="a18e22c9-1345-4889-992e-87056929e489" class="">The success of our research assistant tool also depends on its user interface. It needs to be simple yet effective, allowing users to easily upload PDF documents and interact with the AI for queries. We will develop this interface using React, leveraging the capabilities of Next.js and integrating a file dropzone for PDF uploads and an input field for AI queries.</p><p id="0106e6e2-58a8-4a61-b7b9-123411e54a81" class=""><strong>Step 1: Setting Up the Metadata in </strong><code><strong>layout.tsx</strong></code></p><p id="bf63773c-9ad6-4714-880f-3ae67d531a8e" class="">Begin by updating the <code><strong>layout.tsx</strong></code> under the <code><strong>app/</strong></code> directory. This file will define the basic metadata for our application, setting the stage for a cohesive and informative UI. Here&#x27;s a sample setup for your <code><strong>layout.tsx</strong></code>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10e35d48-c3d7-4d37-a769-a4823d231a32" class="code"><code class="language-JavaScript">export const metadata = {
+  title: &quot;AI-Powered Research Assistant&quot;,
+  description: &quot;Interact with your research documents through AI&quot;,
+};</code></pre><p id="58f13eb5-a00e-414d-ad87-54f37d99c73c" class=""><strong>Step 2: Building the Main Page Interface in </strong><code><strong>page.tsx</strong></code></p><p id="878a1122-5c30-4754-b6fb-e0b02f1f4e49" class="">Now, let&#x27;s focus on the main page of our application, <code><strong>page.tsx</strong></code>. This is where users will interact with the tool, upload documents, and ask questions.</p><p id="ab2a921d-4d7d-4996-ab6b-6fe0fb2460fc" class="">Here’s a detailed code structure for the <code><strong>page.tsx</strong></code>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8140d1c0-abb0-4e9e-8396-d378c0f4e81e" class="code"><code class="language-JavaScript">&quot;use client&quot;;
+
+import { useCallback } from &quot;react&quot;;
+import { useDropzone } from &quot;react-dropzone&quot;;
+import { useCompletion } from &quot;ai/react&quot;;
+
+export default function Home() {
+  // When a file is dropped in the dropzone, call the `/api/ingest-research` API to train our bot on a new PDF File
+  const onDrop = useCallback(async (acceptedFiles: File[]) =&gt; {
+    const file = acceptedFiles[0];
+
+    if (file.type !== &quot;application/pdf&quot;) {
+      alert(&quot;Please upload a PDF&quot;);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.set(&quot;file&quot;, file);
+
+		setUploading(true);
+
+		try {
+      const res = await fetch(&#x27;/api/ingest-research&#x27;, {
+        method: &#x27;POST&#x27;,
+        body: formData,
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        alert(&#x27;File uploaded successfully!&#x27;);
+      } else {
+        alert(&#x27;File upload failed!&#x27;);
+      }
+    } catch (error) {
+      console.error(&#x27;Error uploading file:&#x27;, error);
+      alert(&#x27;An error occurred while uploading the file.&#x27;);
+    } finally {
+      setUploading(false);
+    }
+  }, []);
+
+  // Configure react-dropzone
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+  });
+
+  // Vercel AI hook for generating completions through an AI model
+  const { completion, input, isLoading, handleInputChange, handleSubmit } =
+    useCompletion({
+      api: &quot;/api/chat-research&quot;,
+    });
+
+  return (
+    &lt;main className=&quot;flex min-h-screen flex-col items-center p-24&quot;&gt;
+      &lt;h1&gt;AI-Powered Research Assistant&lt;/h1&gt;
+      &lt;div
+        {...getRootProps({
+          className:
+            &quot;dropzone bg-gray-900 border border-gray-800 p-10 rounded-md hover:bg-gray-800 transition-colors duration-200 ease-in-out cursor-pointer&quot;,
+        })}
+      &gt;
+        &lt;input {...getInputProps()} /&gt;
+        &lt;p&gt;Drag &#x27;n&#x27; drop a PDF here, or click to select a file&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;mx-auto w-full items-center max-w-md py-24 flex flex-col stretch&quot;&gt;
+        &lt;form onSubmit={handleSubmit} className=&quot;flex flex-col gap-4&quot;&gt;
+          &lt;input
+            className=&quot; w-full max-w-md text-black border border-gray-300 rounded shadow-xl p-2&quot;
+            value={input}
+            placeholder=&quot;Ask a question...&quot;
+            onChange={handleInputChange}
+          /&gt;
+
+          &lt;button
+            disabled={isLoading}
+            type=&quot;submit&quot;
+            className=&quot;py-2 border rounded-lg bg-gray-900 text-sm px-6&quot;
+          &gt;
+            Submit
+          &lt;/button&gt;
+
+          &lt;p className=&quot;text-center&quot;&gt;
+            Completion result: {completion === &quot;&quot; ? &quot;Awaiting response...&quot; : completion}
+          &lt;/p&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  );
+}</code></pre><p id="26082278-296b-4dc2-8817-137a59da944d" class="">In this setup:</p><ul id="031505e8-216e-4e69-885a-fff032f06cc8" class="bulleted-list"><li style="list-style-type:disc">We use <code><strong>react-dropzone</strong></code> to create a drag-and-drop area for uploading PDFs.</li></ul><ul id="9fea1a84-d8a4-4db1-a8e5-6f66a10d7f5c" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>onDrop</strong></code> function handles the logic for uploading files to the <code><strong>/ingest-research</strong></code> endpoint.</li></ul><ul id="91d21f9d-fdd0-40ec-9872-0315d3314126" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>handleSubmit</strong></code> function sends user queries to the <code><strong>/chat-research</strong></code> endpoint and displays the AI&#x27;s response.</li></ul><ul id="a7d568b3-d2e5-4855-9638-faf77011d6ed" class="bulleted-list"><li style="list-style-type:disc">Styling can be adjusted as per your design preference using CSS or a framework like Tailwind CSS.</li></ul><h3 id="5b2b04aa-f574-4a91-bd68-eb2b4e7b6654" class="">Running the Application</h3><p id="00854daf-6c28-444e-9116-1111266b9ea4" class="">To test your application, run:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0c43a764-65a0-4a5a-8b62-bc230858c117" class="code code-wrap"><code class="language-Shell">npm run dev</code></pre><p id="164357ce-fbdc-40f1-bf73-f4150b017e01" class="">Upload the research documents of your choice (in PDF format), and once the training is complete, you can start querying the AI with prompts related to the uploaded content.</p><h2 id="510d094e-e443-448c-ba70-4ed4807d9dac" class="">Conclusion</h2><p id="d6c27163-2236-44af-80e6-f049186d99ca" class="">You&#x27;ve successfully built a full-stack RAG setup capable of learning and chatting with any research document it&#x27;s trained on. This tool stands as a testament to the power of combining AI with modern web development.</p><p id="2b10b590-e3f2-40ec-8989-f01f3dce8ca6" class="">As you explore further, think about how this technology can be expanded. How can you utilize AI to enhance the way we interact with and learn from vast amounts of textual data?</p><p id="6dfbde6f-be13-4460-98b2-7c8aa6c4e51f" class="">If you have any questions or need assistance, feel free to send a message.</p><h2 id="c83202d6-fc85-4ab4-a843-10779d816c23" class=""><strong>Additional Resources</strong></h2><ol type="1" id="b457d16b-9ed8-4edd-bd03-e0a3e78bd329" class="numbered-list" start="1"><li><strong><strong><strong><strong>Getting Started With Embeddings: </strong></strong></strong></strong><a href="https://huggingface.co/blog/getting-started-with-embeddings">https://huggingface.co/blog/getting-started-with-embeddings</a></li></ol><ol type="1" id="e1d67a25-a3b3-4d7b-bdef-81b57c594678" class="numbered-list" start="2"><li><strong>What are embeddings?</strong> <a href="https://platform.openai.com/docs/guides/embeddings/what-are-embeddings">https://platform.openai.com/docs/guides/embeddings/what-are-embeddings</a></li></ol><ol type="1" id="4aafa467-6586-4d0b-a51d-cfe62624e128" class="numbered-list" start="3"><li><strong>Embeddings: </strong><a href="https://docs.llamaindex.ai/en/stable/module_guides/models/embeddings.html#">https://docs.llamaindex.ai/en/stable/module_guides/models/embeddings.html#</a></li></ol><ol type="1" id="37d00243-7a0b-4d8d-a7a2-c40953c02b18" class="numbered-list" start="4"><li><strong><strong><strong>Streaming: </strong></strong></strong><a href="https://sdk.vercel.ai/docs/concepts/streaming">https://sdk.vercel.ai/docs/concepts/streaming</a></li></ol><ol type="1" id="21647d14-5c37-4ff6-b525-1c3584d181f2" class="numbered-list" start="5"><li><strong>AI SDK</strong> <strong><strong>Templates &amp; Examples: </strong></strong><a href="https://sdk.vercel.ai/docs#examples">https://sdk.vercel.ai/docs#examples</a></li></ol><p id="6c58fdbb-be00-470c-b167-38bc35b1f87f" class="">
+</p><hr id="2e610664-a622-4cfd-a3f3-3c863159e08e"/><h1 id="1064931c-ed75-4fb5-b89f-40fc987bf934" class=""><strong>Module 5: Building Complex AI Applications</strong></h1><p id="36766a48-804a-4635-974e-1b1fa91a0024" class="">In the ever-evolving landscape of AI, the ability to construct complex applications stands as a hallmark of advanced development skills. In this module, we dive deep into the intricacies of advanced AI topics like temperature control, AI function calling, and the creation of AI agents. Going beyond basic interactions, this section explores how to extend AI models for specialized functions and create autonomous AI agents. This module will not only enhance your understanding but also equip you with the tools to build sophisticated AI-driven applications.</p><h2 id="216fbe95-90ea-4b1d-b384-9de3b07cd366" class="">Advanced Prompt Engineering and Optimization</h2><p id="14a94f9b-1c7d-42f5-b503-6484d8715795" class="">The foundation of any sophisticated AI interaction lies in its prompt engineering. A well-crafted prompt can steer generative AI models in the desired direction, significantly impacting the quality and relevance of their responses.</p><ul id="965d0ba2-b173-4f1f-8036-4d4d64b99dcf" class="bulleted-list"><li style="list-style-type:disc"><strong>The Essence of Prompt Design</strong>: Crafting effective prompts involves a keen understanding of the AI&#x27;s language model. For instance, GPTs respond differently based on the nuances of the prompt given. According to a study by OpenAI, tweaking just a few words in a prompt can lead to markedly different outputs.</li></ul><ul id="3bf2e9ff-179c-4a0d-94ec-bacd809ccce1" class="bulleted-list"><li style="list-style-type:disc"><strong>Temperature Control for Creativity and Precision</strong>: The concept of &#x27;temperature&#x27; in AI controls the randomness of the generated responses. A lower temperature yields more predictable and conservative outputs, whereas a higher temperature can generate more creative and diverse responses. This feature allows developers to tailor the AI&#x27;s responses to suit the needs of their application, whether it be a creative storytelling assistant or a factual information retriever.</li></ul><h2 id="f9398967-e78b-4419-a257-84bf558c0ff4" class="">AI Function Calling</h2><p id="1ea06ca3-296c-4c57-b1ac-a671f98dc678" class="">Modern AI models, such as those offered by OpenAI, can perform an array of functions – from translating languages to generating code. These models can self-invoke functions provided and carry out specific tasks like summarization, translation, or even code generation.</p><p id="d73d033c-74d4-48da-947f-892a1be05de7" class="">Supported by GPT 3.5-turbo and GPT 4 models, the function calling feature is a nice way for developers like you to describe a set of defined functions that the models can intelligently use to connect to external data points, thereby enhancing their responses.</p><h2 id="9f8e7aae-8d1f-473b-bb4b-ade8be086ec0" class=""><strong>Crafting AI Agents</strong></h2><p id="6affdacd-bced-49f9-b5f2-5b8124ff39ed" class="">An AI agent is an autonomous entity capable of performing tasks, interacting, and learning. Creating an AI agent involves not only technical prowess but also an understanding of user experience and interaction dynamics. Experts believe that AI agents are rapidly evolving and finding their place in various industries, from customer service to personal assistants.</p><h2 id="555ea49c-76a0-49f8-a23e-b22c3347008f" class="">Module Projects: </h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7073b96c-b129-43b6-8590-53362fa6bf66"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">For this module, we will build <strong>three AI agents</strong> that will highlight how you can fuse function calling into an AI agent setup to create amazing AI apps capable of running executable code based on user inputs. </div></figure><p id="e14be056-ba55-4cb6-a404-77d57c970b73" class="">This sub-section will guide you through building complex AI applications with increasing levels of complexity. We&#x27;ll explore integrating <strong>LangChain with BabyAGI, AutoGPT, and the OpenAI SDK</strong> in Node.js, focusing on creating autonomous agents that can perform tasks independently and utilize external data.</p><p id="d3f60c80-3718-4ed2-8ead-ac906e4b3749" class="">Through these projects, you&#x27;ll gain hands-on experience in building AI agents with varying complexities. Starting from a basic setup, you&#x27;ll progress to <strong>integrating external data tools and finally create a location-aware suggestion system</strong>.</p><p id="5760b36d-a0be-4181-bfe4-fd8fbafdea5c" class="">We will follow the structure below for both AI agents.</p><ul id="de801949-314c-4746-af3f-df7f1e72f67e" class="bulleted-list"><li style="list-style-type:disc"><strong>Designing the Agent</strong>: Map out the functionalities and user interactions for your AI agent. This could range from a customer service bot to a more complex assistant capable of handling various tasks.</li></ul><ul id="03fb3c69-d89e-48c6-bb41-a0a070c23300" class="bulleted-list"><li style="list-style-type:disc"><strong>Implementation</strong>: Utilize JavaScript and appropriate AI SDKs to bring your AI agent to life. Integrate advanced prompt engineering techniques and ensure your agent can handle function calls effectively.</li></ul><ul id="284799d5-027a-4a02-951b-42f58cba100a" class="bulleted-list"><li style="list-style-type:disc"><strong>Testing and Iteration</strong>: Test your AI agent with various scenarios and refine its capabilities based on feedback and performance.</li></ul><h3 id="ae96f712-b0ba-470e-b869-ea478059346b" class=""><strong><strong>Project 1: Basic AI Agent with LangChain and BabyAGI</strong></strong></h3><p id="7264c819-9c1d-4695-97ea-82c61c2837da" class="">In this tutorial, we’ll create a simple AI agent that independently crafts a culinary tour itinerary in Paris without relying on external data sources. Remember to compare the results here and that of project 2.</p><ol type="1" id="598c5c54-ff26-4ecd-91b1-1585a3515578" class="numbered-list" start="1"><li><strong>Setting Up</strong>:<ul id="878db940-e89e-491a-a872-09f4aa3cceb1" class="bulleted-list"><li style="list-style-type:disc">Initialize a Node.js project and install LangChain with <code><strong>npm install langchain @langchain/openai</strong></code>.</li></ul><ul id="e44b3e74-5993-4887-bf96-4a573dc1008b" class="bulleted-list"><li style="list-style-type:disc">Import necessary modules from LangChain.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d7fada59-3d1f-47a6-915e-f1713a9b4098" class="code"><code class="language-JavaScript">import { BabyAGI } from &quot;langchain/experimental/babyagi&quot;;
+import { MemoryVectorStore } from &quot;langchain/vectorstores/memory&quot;;
+import { OpenAIEmbeddings, OpenAI } from &quot;@langchain/openai&quot;;</code></pre></li></ul></li></ol><ol type="1" id="66d27f66-3e16-4dd0-b507-af4135189c84" class="numbered-list" start="2"><li><strong>Building the Agent</strong>:<ul id="33d467a1-b32c-4cd6-8aed-b811e7adcb22" class="bulleted-list"><li style="list-style-type:disc">BabyAGI uses the OpenAI model to generate a culinary itinerary.</li></ul><ul id="d4f2cd16-5bcf-4af8-a85a-61f718ea0796" class="bulleted-list"><li style="list-style-type:disc">The MemoryVectorStore manages embeddings for task processing.</li></ul><ul id="24e610cb-21c0-4a4d-a5bd-08c32a94b21d" class="bulleted-list"><li style="list-style-type:disc">The AI is tasked with creating a unique Parisian culinary experience</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="58e52b12-5a13-4394-9bb9-78cb3e985b46" class="code"><code class="language-JavaScript">import { BabyAGI } from &#x27;langchain/experimental/babyagi&#x27;;
+import { MemoryVectorStore } from &#x27;langchain/vectorstores/memory&#x27;;
+import { OpenAIEmbeddings, OpenAI } from &#x27;@langchain/openai&#x27;;
+
+const vectorStore = new MemoryVectorStore(new OpenAIEmbeddings());
+
+const babyAGI = BabyAGI.fromLLM({
+  llm: new OpenAI({ temperature: 0 }),
+  vectorstore: vectorStore,
+  maxIterations: 3,
+});
+
+async function generateParisCulinaryItinerary() {
+  const response = await babyAGI.call({ objective: &quot;Generate a culinary tour itinerary that includes authentic Parisian cuisine&quot; });
+  console.log(&quot;Culinary Tour Itinerary in Paris:&quot;, response);
+}
+
+generateParisCulinaryItinerary();</code></pre></li></ol><p id="c86950eb-a43d-4edc-bb10-f80d71c60457" class="">
+</p><h3 id="7b535420-c3df-46e6-915b-5ebc5667eb91" class=""><strong><strong>Project 2: AI Agents with External Data Tools (LangChain and AutoGPT)</strong></strong></h3><p id="6c34fc1c-27a4-4250-9dae-d6a6192055d3" class="">This tutorial will enhance the AI agent&#x27;s ability to use external data tools for an enriched culinary tour in Paris. We will also be using AutoGPT here to add a new flavor. If you want to use BabyAGI for this,  <a href="https://js.langchain.com/docs/use_cases/autonomous_agents/baby_agi#example-with-tools">check out the documentation</a>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="25b160f3-25b8-4a33-8e30-9a81c9608a58"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">We will need the Serp API key for this tutorial. You can get yours here: <a href="https://serpapi.com/users/sign_up?plan=free">https://serpapi.com/users/sign_up?plan=free</a>. They have a free plan that should be okay for this tutorial. </div></figure><ol type="1" id="b6480c1d-0bce-422f-896a-4c1d78f64b97" class="numbered-list" start="1"><li><strong>Setting Up</strong>:<ul id="888dff26-0460-49a3-bbc5-5cc7c82cda7c" class="bulleted-list"><li style="list-style-type:disc">Initialize a Node.js project and install LangChain with <code><strong>npm install @langchain/openai @langchain/community</strong></code>.</li></ul><ul id="274c1e64-92d2-4cbc-96c9-7992232e88e3" class="bulleted-list"><li style="list-style-type:disc">Import necessary modules from LangChain.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="19f767ea-df5b-48d6-9164-a9e723ad447e" class="code"><code class="language-JavaScript">import { AutoGPT } from &#x27;langchain/experimental/autogpt&#x27;;
+import { ReadFileTool, WriteFileTool, SerpAPI } from &#x27;langchain/tools&#x27;;
+import { NodeFileStore } from &#x27;langchain/stores/file/node&#x27;;
+import { HNSWLib } from &#x27;@langchain/community/vectorstores/hnswlib&#x27;;
+import { OpenAIEmbeddings, ChatOpenAI } from &#x27;@langchain/openai&#x27;;</code></pre></li></ul><p id="3a5eaa0c-59fd-48ca-9378-ecf2a7bced9b" class=""><strong>Integrating External Data Tools</strong>:</p><ul id="07b6a66c-4f06-4ebe-a956-a6c02c87f560" class="bulleted-list"><li style="list-style-type:disc">Utilize tools like <code><strong>ReadFileTool</strong></code>, <code><strong>WriteFileTool</strong></code>, and <code><strong>SerpAPI</strong></code> for external data interaction.</li></ul></li></ol><ol type="1" id="57c52e18-2551-4deb-82f7-445a21730786" class="numbered-list" start="2"><li><strong>Building the Enhanced Agent</strong>:<ul id="f772e16a-8ce3-44d3-9fea-33b754330870" class="bulleted-list"><li style="list-style-type:disc">AutoGPT combines LangChain tools with OpenAI&#x27;s language model.</li></ul><ul id="ef179372-ecc1-4d5b-b0f4-9f03d6ad7753" class="bulleted-list"><li style="list-style-type:disc">External data tools enhance the agent&#x27;s ability to provide detailed and context-rich itineraries.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a0650a48-328f-4c3b-b141-a86ce85d938c" class="code"><code class="language-JavaScript">import { AutoGPT } from &#x27;langchain/experimental/autogpt&#x27;;
+import { ReadFileTool, WriteFileTool, SerpAPI } from &#x27;langchain/tools&#x27;;
+import { NodeFileStore } from &#x27;langchain/stores/file/node&#x27;;
+import { HNSWLib } from &#x27;@langchain/community/vectorstores/hnswlib&#x27;;
+import { OpenAIEmbeddings, ChatOpenAI } from &#x27;@langchain/openai&#x27;;
+
+const store = new NodeFileStore();
+const tools = [
+  new ReadFileTool({ store }),
+  new WriteFileTool({ store }),
+  new SerpAPI(process.env.SERPAPI_API_KEY, {
+    location: &quot;Paris, France&quot;,
+    hl: &quot;fr&quot;,
+    gl: &quot;fr&quot;,
+  }),
+];
+
+const vectorStore = new HNSWLib(new OpenAIEmbeddings());
+const autogpt = AutoGPT.fromLLMAndTools(
+  new ChatOpenAI({ temperature: 0 }),
+  tools,
+  {
+    memory: vectorStore.asRetriever(),
+    aiName: &quot;Foobar&quot;,
+    aiRole: &quot;Assistant&quot;,
+  }
+);
+
+async function runEnhancedAgent() {
+  const response = await autogpt.run([&quot;Generate an enriched culinary tour itinerary in Paris&quot;]);
+  console.log(&quot;Enhanced Culinary Tour Itinerary in Paris:&quot;, response);
+}
+
+runEnhancedAgent();</code></pre></li></ol><h3 id="ee380ccb-9f0b-4d6c-97c3-ccc6818f7f31" class="">Project 3: <strong><strong>Building a Location-Based Suggestion Agent with OpenAI SDK and Node.js</strong></strong></h3><p id="3a115e68-4955-4b45-a6ad-76aca0173920" class="">In this tutorial, we&#x27;ll create a Node.js application that uses OpenAI&#x27;s function-calling capability to suggest activities or foods based on the user&#x27;s location. Our app will be simple: it will determine the user&#x27;s location and then generate suggestions accordingly.</p><p id="8f2ad1a9-d349-4fd7-93c3-f2cc75b7a74f" class=""><strong>Setting Up Your Project</strong></p><ol type="1" id="b05f173b-5add-4e97-b0a4-29769ace7b55" class="numbered-list" start="1"><li><strong>Initialize a Node.js Project</strong>:<ul id="8ba3545d-14f1-40b8-aa4d-9ad388142db5" class="bulleted-list"><li style="list-style-type:disc">Create a new directory for your project and run <code><strong>npm init -y</strong></code> to initialize a Node.js project.</li></ul><ul id="a0467217-2dca-451d-b638-a0efe0313adb" class="bulleted-list"><li style="list-style-type:disc">Install the necessary packages: <code><strong>npm install openai node-fetch dotenv</strong></code>.</li></ul></li></ol><ol type="1" id="657336e8-ddfd-412c-b1f9-2f82ef07a8ef" class="numbered-list" start="2"><li><strong>Setting Up Environment Variables</strong>:<ul id="07defa25-cd3e-4aae-ad5b-dc1658351d1b" class="bulleted-list"><li style="list-style-type:disc">In your project directory, create a file named <code><strong>.env</strong></code>.</li></ul><ul id="50d456fa-ffee-498c-8a0b-981da6c51a25" class="bulleted-list"><li style="list-style-type:disc">Add your OpenAI API key: <code><strong>OPENAI_API_KEY=your_openai_api_key_here</strong></code>.</li></ul></li></ol><p id="25cc3793-f8ea-4df0-8b47-68b5fa7cb8e6" class=""><strong>Building the Application</strong></p><ol type="1" id="215fc955-6e68-467c-a04d-195d1dd2b9a5" class="numbered-list" start="3"><li><strong>Fetch Location and Set Up OpenAI</strong></li></ol><ul id="68572910-84a2-441e-b77d-ffc0b53182ed" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>fetchUserLocation</strong></code> function retrieves the user&#x27;s location based on their IP address.</li></ul><ul id="7e343ef0-91c1-456d-868c-07ee294be6c9" class="bulleted-list"><li style="list-style-type:disc"><strong>Setting Up OpenAI</strong>: We configure the OpenAI SDK with the API key and define the tools (functions) that the AI can suggest calling.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a2246633-5b4b-4768-aac9-b3350f587d31" class="code"><code class="language-JavaScript">import OpenAI from &quot;openai&quot;;
+import dotenv from &#x27;dotenv&#x27;;
+dotenv.config();
+ 
+const openAI = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
+
+async function fetchUserLocation() {
+  const locationResponse = await fetch(&quot;https://ipapi.co/json/&quot;);
+  return await locationResponse.json();
+}
+
+const aiTools = [
+  {
+    type: &quot;function&quot;,
+    function: {
+      name: &quot;fetchUserLocation&quot;,
+      description: &quot;Determines user location based on IP&quot;,
+      parameters: {
+        type: &quot;object&quot;,
+        properties: {},
+      },
+    },
+  },
+];
+
+const toolset = {
+  fetchUserLocation,
+};</code></pre></li></ul><ol type="1" id="9624fbc0-7215-4132-998a-84c93b84ca53" class="numbered-list" start="4"><li><strong>Creating the Agent Function and Generating Suggestions</strong></li></ol><ul id="0f05c7d8-2917-4cc0-b1ff-91fdfa24a770" class="bulleted-list"><li style="list-style-type:disc">The <code><strong>agent</strong></code> function is where the magic happens. It communicates with OpenAI to get suggestions on which function to call and then executes the suggested function.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="17006505-9f20-4bd3-be6c-3f8eefaeda93" class="code"><code class="language-JavaScript">async function agent(inputText) {
+  let chatHistory = [
+    {
+      role: &quot;system&quot;,
+      content: `You are a smart assistant. Use the provided tools effectively.`,
+    },
+    {
+      role: &quot;user&quot;,
+      content: inputText,
+    },
+  ];
+
+  for (let attempt = 0; attempt &lt; 5; attempt++) {
+    const aiResponse = await openai.chat.completions.create({
+      model: &quot;gpt-4&quot;,
+      messages: chatHistory,
+      tools: aiTools,
+    });
+
+    const { finish_reason, message } = aiResponse.choices[0];
+
+    if (finish_reason === &quot;tool_calls&quot; &amp;&amp; message.tool_calls) {
+      const functionName = message.tool_calls[0].function.name;
+      const calledFunction = toolset[functionName];
+      const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+      const functionArgsArr = Object.values(functionArgs);
+      const functionResponse = await calledFunction.apply(
+        null,
+        functionArgsArr,
+      );
+
+      chatHistory.push({
+        role: &quot;function&quot;,
+        name: functionName,
+        content: `
+                  The result of the last function was this: ${JSON.stringify(
+                    functionResponse,
+                  )}
+                  `,
+      });
+    } else if (finish_reason === &quot;stop&quot;) {
+      chatHistory.push(message);
+      return message.content;
+    }
+  }
+  return &quot;No conclusive suggestion could be generated. Please refine your query.&quot;;
+}</code></pre></li></ul><ol type="1" id="9cb9d6cb-b3f5-46d1-ad48-003a13998677" class="numbered-list" start="5"><li><strong>Running Your Application</strong>:<p id="832e30c7-844b-43a3-9ef0-3f15eb546dde" class="">To run your application:</p></li></ol><ul id="9cdb5225-cf6a-4bec-8e4f-472d47a852b9" class="bulleted-list"><li style="list-style-type:disc"><strong>Start the Application</strong>: Use <code><strong>node yourfilename.js</strong></code> in your terminal.</li></ul><ul id="00a54cd9-2926-4ba6-b6a3-d95c2aab394d" class="bulleted-list"><li style="list-style-type:disc"><strong>Interact with the AI</strong>: The script will execute, and you should see food suggestions based on the detected location in your console.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c0dd5d1d-6156-4677-8e75-5585c5a861ac" class="code"><code class="language-JavaScript">async function main() {
+  const userQuery =
+    &quot;Could you suggest some local delicacies based on where I am?&quot;;
+  const suggestion = await agent(userQuery);
+  console.log(&quot;Suggestion:&quot;, suggestion);
+}
+
+main();</code></pre></li></ul><p id="fc9c54e8-49cc-4ce2-83f7-b4d315710f3e" class="">By following these steps, you&#x27;ve just created an intelligent agent capable of making function calls to provide real-world information and suggestions. This agent exemplifies how AI can be leveraged to create interactive and dynamic applications.</p><ul id="93620bef-acfd-4794-9a4b-701ec213435f" class="toggle"><li><details open=""><summary><strong>Full code</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9f0a76fb-c8f1-494b-aba0-f3ba3e26f5c4" class="code"><code class="language-JavaScript">
+import OpenAI from &quot;openai&quot;;
+import dotenv from &#x27;dotenv&#x27;;
+dotenv.config();
+ 
+const openAI = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
+
+async function fetchUserLocation() {
+  const locationResponse = await fetch(&quot;https://ipapi.co/json/&quot;);
+  const locationData = await locationResponse.json();
+  return locationData;
+}
+
+const aiTools = [
+  {
+    type: &quot;function&quot;,
+    function: {
+      name: &quot;fetchUserLocation&quot;,
+      description: &quot;Determines user location based on IP&quot;,
+      parameters: {
+        type: &quot;object&quot;,
+        properties: {},
+      },
+    },
+  },
+];
+
+const toolset = {
+  fetchUserLocation,
+};
+
+async function agent(inputText) {
+  let chatHistory = [
+    {
+      role: &quot;system&quot;,
+      content: `You are a smart assistant. Use the provided tools effectively.`,
+    },
+    {
+      role: &quot;user&quot;,
+      content: inputText,
+    },
+  ];
+
+  for (let attempt = 0; attempt &lt; 5; attempt++) {
+    const aiResponse = await openai.chat.completions.create({
+      model: &quot;gpt-4&quot;,
+      messages: chatHistory,
+      tools: aiTools,
+    });
+
+    const { finish_reason, message } = aiResponse.choices[0];
+
+    if (finish_reason === &quot;tool_calls&quot; &amp;&amp; message.tool_calls) {
+      const functionName = message.tool_calls[0].function.name;
+      const calledFunction = toolset[functionName];
+      const functionArgs = JSON.parse(message.tool_calls[0].function.arguments);
+      const functionArgsArr = Object.values(functionArgs);
+      const functionResponse = await calledFunction.apply(
+        null,
+        functionArgsArr,
+      );
+
+      chatHistory.push({
+        role: &quot;function&quot;,
+        name: functionName,
+        content: `
+                  The result of the last function was this: ${JSON.stringify(
+                    functionResponse,
+                  )}
+                  `,
+      });
+    } else if (finish_reason === &quot;stop&quot;) {
+      chatHistory.push(message);
+      return message.content;
+    }
+  }
+  return &quot;No conclusive suggestion could be generated. Please refine your query.&quot;;
+}
+
+async function main() {
+  const userQuery =
+    &quot;Could you suggest some local delicacies based on where I am?&quot;;
+  const suggestion = await agent(userQuery);
+  console.log(&quot;Suggestion:&quot;, suggestion);
+}
+
+main();</code></pre></details></li></ul><h2 id="d23ef137-f2e1-4a65-b873-9a2341cdded6" class="">Conclusion</h2><p id="d58d86be-c2f3-44e3-87d6-bb1177e570a3" class="">With the skills to build complex AI agents and utilize advanced AI techniques, the possibilities are endless. If you want to build more advanced AI agents, check out the links listed in the resources section.</p><p id="93ff3794-33cb-425b-8728-52598cab4d0d" class="">Reflecting on your journey through this module, what kind of innovative AI agent do you envision creating that could revolutionize the way we interact with technology? Feel free to share with me your ideas on <a href="https://discord.gg/YSRuyrEuug">Discord</a>.</p><h2 id="4e0ae116-ea53-4d26-a5ae-18d8ff667f53" class="">Resources</h2><p id="36bec726-7cbc-430b-8218-de980446314a" class="">1. <a href="https://js.langchain.com/docs/use_cases/autonomous_agents/baby_agi">https://js.langchain.com/docs/use_cases/autonomous_agents/baby_agi</a><br/>2. <br/><a href="https://cookbook.openai.com/examples/how_to_build_an_agent_with_the_node_sdk">https://cookbook.openai.com/examples/how_to_build_an_agent_with_the_node_sdk</a></p><p id="a28fd8b6-3bb0-4dc8-afd9-3fb13b510df4" class="">3. <a href="https://js.langchain.com/docs/modules/agents/how_to/custom_agent">https://js.langchain.com/docs/modules/agents/how_to/custom_agent</a></p><p id="4ae4be95-24a0-40c7-a2ee-f3182ab6f81b" class="">4. <a href="https://js.langchain.com/docs/integrations/tools/">https://js.langchain.com/docs/integrations/tools/</a></p><p id="f4c5bd56-2932-4374-901f-a4bcac1972be" class="">5. <a href="https://vercel.com/templates/next.js/agent-gpt">https://vercel.com/templates/next.js/agent-gpt</a></p><p id="ad42ffb2-0a10-4e37-9887-19eb57037109" class="">6. <a href="https://www.mercity.ai/blog-post/advanced-prompt-engineering-techniques">https://www.mercity.ai/blog-post/advanced-prompt-engineering-techniques</a></p><p id="4e702493-b2ff-457d-872e-3f5aa6c1f6b9" class="">
+</p><hr id="b57621db-f35b-41af-ab4d-b9e5d13e4959"/><h1 id="5e8bceef-2323-4f53-8209-1490ce92dbb4" class="">Module 6: Security, Ethics, and Performance in AI Development</h1><p id="8ba963ff-d5ce-45be-8284-c2564ebf14e1" class="">This module, an essential part of this course, delves into the critical aspects of security, ethics, and performance in AI development. It&#x27;s a guide to building AI applications that are not only powerful and efficient but also secure, ethical, and respectful of user privacy.</p><h2 id="0ef76ce7-6043-4077-a34e-6d54710dcc63" class="">1. Security Practices in AI Applications</h2><p id="a003e92f-243b-4fa4-b050-9db4e911d0d8" class="">As we integrate AI models into apps used by millions of users across the world, it’s important that we recognize the unique security challenges that have emerged and how we can prevent or at least mitigate them. <br/>The first step in doing that is:<br/></p><h3 id="37692e84-015f-4c15-bb88-534cfd18e3f6" class=""><strong>Understanding AI-specific Security Risks</strong>: </h3><p id="b1463ef2-da3b-4e82-a74a-a9326a2c9179" class="">Some of the risks that are emerging are:</p><ul id="38465e2b-9f31-4ce7-a2e2-e49d5055d24c" class="bulleted-list"><li style="list-style-type:disc"><strong>Adversarial Attacks</strong>: These are efforts to fool AI models with deceptive data. It&#x27;s crucial to understand how these attacks can manipulate AI decision-making.</li></ul><ul id="3e9567ad-fed8-4daf-961b-db67d9538bec" class="bulleted-list"><li style="list-style-type:disc"><strong>Data Poisoning</strong>: This involves corrupting the training data of an AI model. The integrity of data is paramount, as poisoned data can lead to flawed or biased AI outputs.</li></ul><ul id="9c4bba86-9e3c-4346-8363-2c914c4db489" class="bulleted-list"><li style="list-style-type:disc"><strong>AIJacking</strong>: An attack where an old model or dataset name is registered by an attacker, leading to the unintentional use of malicious data. You can read this amazing expose on the matter: <a href="https://www.legitsecurity.com/blog/tens-of-thousands-of-developers-were-potentially-impacted-by-the-hugging-face-aijacking-attack"><strong>Legit Discovers &quot;AI Jacking&quot; Vulnerability in Popular Hugging Face AI Platform</strong></a><strong>.</strong></li></ul><p id="f832d718-6273-4f0a-8f23-037067cf15f5" class="">A good way to better your security posture is by going through the resources on AI security prepared by The Open Worldwide Application Security Project (OWASP). I have linked some of these in the resources section of this module.</p><h3 id="649d50d5-5a1c-4f17-b66f-767a6ad646cc" class=""><strong>Implementing Robust Security Protocols</strong>: </h3><p id="3514a555-b0fe-495b-b02d-dc2c7a7fef4b" class="">To counter these AI-specific and other web development security risks, robust security protocols are essential:</p><ul id="ec088544-c19e-43af-9a8e-00662b380f2b" class="bulleted-list"><li style="list-style-type:disc"><strong>Implementing Real-Time Personally Identifiable Information Safeguard</strong>: Implementing real-time protections for personally identifiable information is critical. Tools that anonymize or redact PII in AI interactions are essential in safeguarding user privacy.</li></ul><ul id="a57b364d-7fd8-420e-96cf-1e8643f1bdb2" class="bulleted-list"><li style="list-style-type:disc"><strong>Encryption and Secure APIs</strong>: Implement HTTPS in Node.js applications to secure data transmission.</li></ul><ul id="8c400543-ec09-48bb-849b-10954884dec4" class="bulleted-list"><li style="list-style-type:disc"><strong>Secure Authentication Methods</strong>: Use modern authentication protocols like JWT (JSON Web Tokens) for secure user authentication.</li></ul><ul id="9480ad85-41de-4eb0-a5d9-9aa2a293409e" class="bulleted-list"><li style="list-style-type:disc"><strong>Data Minimization and Anonymization</strong>: Reduce access to sensitive data, create anonymized datasets for secondary uses, and document the purpose before collection.</li></ul><h3 id="c7f7a95b-2d88-4a03-8805-4d6a773b09d5" class=""><strong>Regular Audits and Compliance: </strong></h3><p id="df292ee2-e402-457b-80d1-bd61dbd24d5b" class="">It is important to conduct regular security audits, comply with data protection regulations, and employ tools to automate these processes.</p><ul id="2addbfcc-5218-4784-99e8-9fd19ce0500d" class="bulleted-list"><li style="list-style-type:disc"><strong>Adherence to Data Protection Regulations</strong>: Compliance with GDPR, CCPA, and other data protection laws is crucial. This involves regular audits and updates to security practices.</li></ul><ul id="da2ab50a-483d-4d5f-99f8-2217eea85ee6" class="bulleted-list"><li style="list-style-type:disc"><strong>OWASP AI Security and Privacy Guide</strong>: Familiarize with the OWASP guide for AI security, focusing on risks related to AI supply chain attacks and vulnerabilities.</li></ul><p id="f17470d8-4ce6-4669-bfcf-c56d33dc2ca3" class="">
+</p><p id="e7076f67-663a-4c33-8e91-7c93a1f6f297" class="">As AI becomes more integrated into software development, understanding and implementing robust security measures is not just a technical necessity but a moral imperative. How can JavaScript developers contribute to this evolving landscape, ensuring their AI applications are as secure as they are innovative?</p><h2 id="a789b28c-dcb3-4679-ad6a-edf71b7e1d30" class=""><strong><strong>2. Ethical Considerations and Best Practices In Building AI Apps</strong></strong></h2><p id="e0b43ee8-7e79-4862-8432-7514a5cf75e2" class="">As we build AI apps, especially for large numbers of users, understanding and implementing ethical considerations and best practices becomes increasingly important.</p><p id="6ce4b225-1e89-4a51-b884-d34f12970202" class="">Here are some tips to implement while paying attention to some key Principles of AI Ethics:<strong> Transparency, Fairness, Accountability, Reliability, Security, and Privacy.</strong></p><ul id="327f2d83-d045-4c5b-8c0f-3b2b1ea7c99f" class="bulleted-list"><li style="list-style-type:disc"><strong>Identifying and Mitigating Biases</strong>: Bias in AI can stem from skewed data sets or preconceived notions held by developers. Implementing diverse training datasets and conducting regular bias audits are crucial.</li></ul><ul id="29b6e94a-c097-43d9-9a83-9f2d924acbab" class="bulleted-list"><li style="list-style-type:disc"><strong>Frameworks for Ethical Decision-Making</strong>: Introduce ethical frameworks like the Asilomar AI Principles, which emphasize safety, privacy, and fairness.</li></ul><ul id="a8dcf41e-0f8e-4a0f-b1c2-7ae90165685f" class="bulleted-list"><li style="list-style-type:disc"><strong>Ongoing Monitoring and Assessment</strong>: Continually assess AI systems for ethical integrity, adapting and updating as societal norms and values evolve.</li></ul><h2 id="6493bed2-cf57-4ac4-9ea6-05a66b612f00" class=""><strong><strong>3. Privacy-focused Local LLMs</strong></strong></h2><p id="8da0e4d5-c27f-4c15-a3a6-cb4e8dfcb738" class="">AI teams are now focusing on developing private, LLM-focused solutions that can process data locally. This is crucial for individuals and organizations who handle sensitive data and need to comply with regulations. As privacy concerns continue to grow, these solutions are becoming increasingly important.</p><p id="4fb38cef-832c-4756-a54e-8221a0318c4f" class=""><strong>Advantages of Local Data Processing</strong>:</p><ul id="a19c6d04-e86f-4e05-b845-4728518c5ce6" class="bulleted-list"><li style="list-style-type:disc"><strong>Reduced Data Breach Risks</strong>: By processing data on local servers, the risk of external data breaches is significantly lowered.</li></ul><ul id="1ec18600-f177-4a45-956b-6d4af7159dc3" class="bulleted-list"><li style="list-style-type:disc"><strong>Compliance with Privacy Regulations</strong>: Local processing aids in compliance with stringent data protection laws like GDPR and CCPA.</li></ul><p id="fa559299-0fac-463a-953b-4d9ff881b1fe" class="">Let’s explore some of the available solutions in the market:</p><ul id="db0b6dd0-b617-4d69-b635-689685135a9a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/nomic-ai/gpt4all"><strong>GPT4All</strong></a><a href="https://github.com/nomic-ai/gpt4all">:</a> Developed by NomicAI, this solution offers open-source large language models that run locally on CPUs and GPUs, making advanced AI accessible without compromising data privacy. </li></ul><ul id="25324db5-b494-45cc-a7dc-f0f8442bbb9e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/imartinez/privateGPT"><strong>privateGPT</strong></a><strong>: </strong>Focuses on private interactions with documents using GPT, ensuring data privacy and preventing data leaks.</li></ul><ul id="b0479f24-4d74-4583-8f51-70245fb970aa" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/Mintplex-Labs/anything-llm"><strong>AnythingLLM</strong></a>: An open-source, customizable enterprise-ready document chatbot providing an local alternative to the closed-source, browser-based ChatGPT experience.</li></ul><h2 id="361f0167-8a10-4762-9f16-b0e3c84fdb0f" class="">4. <strong><strong>Enhancing and Scaling AI Applications - Strategies for Optimal Performance and Deployment</strong></strong></h2><p id="fd996556-3069-4078-b4ce-959ae018b9d0" class="">Here are some best practices for deploying and scaling AI applications:</p><ul id="f0a3f8c9-fc5a-4787-9299-cf0db615d6de" class="bulleted-list"><li style="list-style-type:disc"><strong>Model Optimization</strong>: Choose the best model based on evaluation benchmarks relevant to your specific task and data. You can take a look at some of the leaderboards we’ve shared through this course to inform your decision.</li></ul><ul id="ab4fd7d6-5226-447f-9298-d84cfe04db3d" class="bulleted-list"><li style="list-style-type:disc"><strong>User Experience and Interaction Design</strong>: Ensure the application is user-friendly and intuitive, with a focus on interaction design for AI systems.</li></ul><ul id="071490b1-37b0-441a-8542-6b342345cd39" class="bulleted-list"><li style="list-style-type:disc"><strong>Exploring LLM Frameworks</strong>: Encourage experimentation with various LLM frameworks like LlamaIndex, LangChain, and EmbedChain to find the best fit for the application.</li></ul><ul id="4cda1d19-e85c-4a35-a25c-db332aff96a5" class="bulleted-list"><li style="list-style-type:disc"><strong>Deployment Platforms Selection</strong>: Choose the most suitable platform for deployment based on the application&#x27;s needs. Know when to use Serverless, Server, and Background workers for, e.g., Discord AI bots.</li></ul><ul id="85485dfb-41b3-45ec-9ec6-e0045d21c312" class="bulleted-list"><li style="list-style-type:disc"><strong>CI/CD Automation for Streamlining Deployment</strong>: Implement CI/CD pipelines for automated testing, integration, and deployment, enhancing deployment efficiency and reliability.</li></ul><ul id="c464b2a9-84a5-4bf1-b736-ef27c335f9f8" class="bulleted-list"><li style="list-style-type:disc"><strong>Continuous Learning and Best Practices</strong>: Emphasize the importance of staying informed about the latest trends, techniques, and best practices in AI development.</li></ul><h2 id="fb562124-828b-4ceb-b9a4-cab0463f84c1" class="">Conclusion</h2><p id="0dfbdd39-0c23-4205-9aca-c8af9e12b44e" class="">As we navigate through the complexities of AI development, we must remember that with great power comes great responsibility. Security, ethics, and performance are not just checkboxes in the development process; they are the pillars upon which trust and efficacy are built. </p><p id="4b78f861-1e60-424f-9d3b-180b1df99f59" class="">As you, the JavaScript developer, embark on creating AI applications, how will you balance these critical aspects to not only meet user expectations but also contribute positively to the ethical advancement of AI technology? Feel free to share with me your ideas on <a href="https://discord.gg/YSRuyrEuug">Discord</a>.</p><h2 id="41af79b9-fd6c-4a83-ad04-52d73f93bd50" class=""><strong>Additional Resources</strong></h2><p id="8c14463d-ae96-4533-9d28-86fc0e21eee9" class="">1- <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for LLM</a></p><p id="b13859c4-4bd4-484a-abf6-c300c85cc519" class="">2 - <a href="https://owasp.org/www-project-machine-learning-security-top-10/docs/ML06_2023-AI_Supply_Chain_Attacks.html">OWASP TOP 10 for Machine Learning security</a></p><p id="0d6cca8e-4529-495f-81a5-9c933f5ce05a" class="">3- <a href="https://owasp.org/www-project-ai-security-and-privacy-guide/">OWASP AI Security and Privacy Guide</a></p><p id="2a92f51b-7e57-4b65-8661-e72a89bd4427" class="">4- <a href="https://blogs.nvidia.com/blog/ai-security-steps/">Six Steps Toward AI Security </a></p><p id="5d9894be-b1af-4479-b83e-b059d1d84762" class="">5- <a href="https://www.youtube.com/watch?v=B3KAuDoTymE">Securing AI &amp; LLM-based Applications: Best Practices </a></p><hr id="9769073d-e344-405b-b4df-f3faeba41839"/><h1 id="30dda34b-b56d-4dfa-8ad2-72f3d2b4e253" class="">Additional Resources - Checklists, Roadmaps, Visual aids</h1><ul id="b6894003-c6e8-48f9-91d2-cfd4daa17051" class="bulleted-list"><li style="list-style-type:disc">Checklists for each module</li></ul><ul id="862432e4-08ad-4251-b9c8-40a593cabfdf" class="bulleted-list"><li style="list-style-type:disc">List of more projects you can build</li></ul><ul id="86a20fda-b1a7-4589-a0d7-6d0c6b7082d9" class="bulleted-list"><li style="list-style-type:disc">Roadmaps for learning paths and skill development</li></ul><ul id="268d7cfb-a10a-402b-b1b5-45a75261e9c6" class="bulleted-list"><li style="list-style-type:disc">Visual aids and infographics for complex concepts</li></ul><ul id="db5cd6d9-2f00-4bd4-89a7-837fbb04c969" class="bulleted-list"><li style="list-style-type:disc">Community forum for collaboration and support</li></ul><h2 id="6b462a8f-54c7-4d00-a4fe-6766ba9adbe7" class=""><strong><strong>Module Checklists</strong></strong></h2><h3 id="38d35a81-57e5-4884-bcfb-43e04ebedd18" class="">Module 1: JavaScript for AI</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="832589d5-064b-4328-a959-1e31fbbdd8bc" class="code code-wrap"><code class="language-Markdown">- [ ] Understand the role of JavaScript in AI application development.
+- [ ] Learn about JavaScript frameworks like Node.js and Next.js.
+- [ ] Set up a development environment with Node.js and Next.js.
+- [ ] Familiarize with the JavaScript ecosystem relevant to AI.</code></pre><h3 id="8fc57df3-c7ed-4801-a83e-e91063c15d7a" class="">Module 2: Basics of AI Development</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="22bba3b6-d271-4db7-87c2-92ed06485723" class="code code-wrap"><code class="language-Markdown">- [ ] Introduction to Large Language Models (LLMs) like GPT, BERT, Claude.
+- [ ] Learn the basics of prompt engineering and model selection.
+- [ ] Integrate LLMs with JavaScript.
+- [ ] Develop a simple AI content generator using Node.js.</code></pre><h3 id="df940b61-0f08-48da-8e7e-771d54e46af6" class="">Module 3: Integrating AI Models to JS Apps</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b1f9f2cd-96ca-4c30-8b7b-07914cb62173" class="code code-wrap"><code class="language-Markdown">- [ ] Explore open-source AI models (e.g., Stable-diffusion, Gemini).
+- [ ] Investigate commercial AI models (e.g., Whisper, Dall-E).
+- [ ] Learn to work with APIs and external libraries.
+- [ ] Understand handling AI model responses and interactivity.
+- [ ] Build an Image generation app using Dall-E integration.</code></pre><h3 id="97a45c02-d223-4fd7-af59-aeffe7242f2f" class="">Module 4: Introduction to Retrieval Augmented Generation</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eb836e24-9bc1-4723-bc9c-73477fa02a36" class="code code-wrap"><code class="language-Markdown">- [ ] Understand the basics of Retrieval Augmented Generation (RAG).
+- [ ] Learn about embeddings and vector databases.
+- [ ] Explore open-source tools like Llama Index, Embedchain, and Langchain.
+- [ ] Integrate AI SDK in development.
+- [ ] Implement RAG in a Next.js project.
+- [ ] Develop a Research assistant tool.</code></pre><h3 id="af745850-ad0c-4257-b955-6bb400d2d44b" class="">Module 5: Building Complex AI Applications</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c6f053dd-e499-45dc-8b17-1883e1dc2277" class="code code-wrap"><code class="language-Markdown">- [ ] Master advanced prompt engineering and optimization.
+- [ ] Understand AI function calling and creating AI agents.
+- [ ] Develop a complex AI agent as a project.</code></pre><h3 id="87337d34-7ff4-4520-bd71-312bf826958e" class="">Module 6: Security, Ethics, and Performance in AI Development</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3c7065bc-0609-4162-84d0-9db537821f9a" class="code code-wrap"><code class="language-Markdown">- [ ] Learn security practices in AI applications.
+- [ ] Understand ethical considerations and best practices in AI.
+- [ ] Explore privacy-focused Local LLMs.
+- [ ] Learn performance optimization techniques for AI apps.
+- [ ] Understand best practices for deploying and scaling AI applications.</code></pre><hr id="eadfc1a8-c604-439d-9b4e-79d7d3296ccf"/><h2 id="f0f8f940-1e39-412f-ae76-670e6a4d5917" class="">List of more projects you can build</h2><ol type="1" id="46e79746-384e-4033-aca8-c74d9e3be55a" class="numbered-list" start="1"><li><strong>Sentiment Analysis Tool</strong>:<ul id="1e2deb23-9e4e-47ea-8b75-8a7ed9813e34" class="bulleted-list"><li style="list-style-type:disc">Build a tool that analyzes and categorizes the sentiment of user input or social media posts using AI models like BERT or GPT.</li></ul><ul id="996a5217-8f7b-40f2-9451-86c2fd511a25" class="bulleted-list"><li style="list-style-type:disc">Integrate with social media APIs to fetch real-time data.</li></ul></li></ol><ol type="1" id="626a3549-c108-4c5f-bc36-3aed18bdb8cc" class="numbered-list" start="2"><li><strong>Language Translation App</strong>:<ul id="db45359b-e6c8-453c-a315-3c6456c41841" class="bulleted-list"><li style="list-style-type:disc">Create an app that uses AI models for real-time language translation.</li></ul><ul id="eb85f07c-9ba7-472a-a478-7bc12bd032fa" class="bulleted-list"><li style="list-style-type:disc">Incorporate speech recognition and text-to-speech for an interactive experience.</li></ul></li></ol><ol type="1" id="b407123b-165f-4382-be41-87b10812a9bb" class="numbered-list" start="3"><li><strong>AI-Powered Chatbot for Customer Support</strong>:<ul id="d292b16e-f7cd-4f78-b8f6-99ec96741e60" class="bulleted-list"><li style="list-style-type:disc">Develop a chatbot that can handle customer queries and provide relevant information or redirect to human support.</li></ul><ul id="371f88e7-92f1-4777-8b4e-d72d7390ba3a" class="bulleted-list"><li style="list-style-type:disc">Integrate with websites or customer service platforms.</li></ul></li></ol><ol type="1" id="e739a57d-0145-4f8a-b286-44582301597d" class="numbered-list" start="4"><li><strong>Personal Finance Assistant</strong>:<ul id="40e79e0a-67b5-4fc6-a0b6-4c78af760506" class="bulleted-list"><li style="list-style-type:disc">An application that uses AI to analyze personal finance patterns and provides budgeting and investment advice.</li></ul></li></ol><ol type="1" id="d5cdb128-2c53-44e1-946d-020930a7caa4" class="numbered-list" start="5"><li><strong>Voice-Activated Home Automation System</strong>:<ul id="4cf5396f-0b59-43ab-a52f-e2be83a42053" class="bulleted-list"><li style="list-style-type:disc">Build a system that uses voice recognition to control home appliances and settings.</li></ul></li></ol><ol type="1" id="38354b0f-4bb1-441e-96f7-4a793f862ecd" class="numbered-list" start="6"><li><strong>Fitness and Diet Planner</strong>:<ul id="b6097248-0858-4ed0-9972-bf17cfffc337" class="bulleted-list"><li style="list-style-type:disc">An AI system that creates personalized fitness and diet plans based on user preferences and goals.</li></ul></li></ol><ol type="1" id="3fa1816f-5abf-4dbb-b516-7cf83fb09b3a" class="numbered-list" start="7"><li><strong>Automated Resume Screening Tool</strong>:<ul id="9e7f11ab-de78-448e-a173-ec94c6983ce0" class="bulleted-list"><li style="list-style-type:disc">Develop a tool that assists HR in screening resumes and predicting candidate fit based on job descriptions and resume content.</li></ul></li></ol><p id="69021c8e-f642-4028-8c1f-14de16701c6d" class="">
+</p><hr id="38fda5bc-870d-4e8c-b89c-317318c723c6"/><p id="70781166-4ea0-45e7-ac9f-126e2b2869fd" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
